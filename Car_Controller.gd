@@ -19,6 +19,12 @@ var Car_Checkpoints_Collected: int = 0
 
 var Car_Distance_to_Next_Checkpoint: float = 0
 
+
+##Usado para penalizar o carro ficar parado
+var Tick_Penality: float = 0
+
+var Reward: float = 0
+
 #TODO:
 # Posicao dele no Espaco
 
@@ -57,6 +63,8 @@ func _physics_process(delta: float) -> void:
 		position += velocity 
 		
 		Input_List.append(Vector2(input_forward, input_turn))
+		
+		Tick_Penality -= 0.1
 		
 	else:
 		

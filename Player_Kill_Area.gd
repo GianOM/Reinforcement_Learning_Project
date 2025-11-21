@@ -21,7 +21,11 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		score_text.text += "\n Distance to Closest Checkpoint: %f" % body.Car_Distance_to_Next_Checkpoint
 		
+		score_text.text += "\n Number of Ticks: %f" % body.Tick_Penality
+		
 		body.Kill_Car()
+		
+		JSON_Exporter.Export_Car_States(body)
 		
 		get_tree().paused = true
 	

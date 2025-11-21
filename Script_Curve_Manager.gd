@@ -8,7 +8,7 @@ func Distance_to_Closest_Checkpoint(Car_Instance: Car) -> void:
 	
 	print(Temp_Path_Follow.name)
 	
-	Car_Instance.Car_Distance_to_Next_Checkpoint = Temp_Path_Follow.global_position.distance_to(Car_Instance.global_position)
+	Car_Instance.Car_Distance_to_Next_Checkpoint = 100.0 / Temp_Path_Follow.global_position.distance_to(Car_Instance.global_position)
 	
 		
 		

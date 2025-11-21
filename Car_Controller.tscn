@@ -122,14 +122,13 @@ polygon = PackedVector2Array(299, 283, 417, 318, 553, 440, 612, 530, 600, 602, 5
 polygon = PackedVector2Array(314, 835, 636, 971, 843, 979, 1547, 801, 1639, 731, 1629, 644, 1566, 598, 1627, 461, 1591, 341, 1517, 202, 872, 59, 585, 22, 607, -109, 2085, -83, 2082, 1163, 321, 1138)
 
 [node name="You Lost Text" type="Label" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -31.0
-offset_top = -11.5
+offset_top = -160.5
 offset_right = 1920.0
-offset_bottom = 1081.0
+offset_bottom = 932.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 200

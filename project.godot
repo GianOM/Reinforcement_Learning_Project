@@ -15,6 +15,10 @@ run/main_scene="uid://4wttcr2gdd5m"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+JSON_Exporter="*res://json_exporter.gd"
+
 [display]
 
 window/size/viewport_width=1920
