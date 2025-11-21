@@ -21,3 +21,34 @@ mesh = SubResource("CapsuleMesh_reufu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.9999994)
 shape = SubResource("RectangleShape2D_reufu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+scale = Vector2(0.025, 0.15)
+target_position = Vector2(0, -10)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+rotation = 1.5707964
+scale = Vector2(0.025, 0.15)
+target_position = Vector2(0, -10)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+rotation = 3.1415927
+scale = Vector2(0.025, 0.15)
+target_position = Vector2(0, -10)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+rotation = 4.712389
+scale = Vector2(0.025, 0.15)
+target_position = Vector2(0, -10)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false

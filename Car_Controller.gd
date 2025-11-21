@@ -15,6 +15,12 @@ var friction := 2.5           # Resistance when no input
 var drift := 0.9                  # 1 = no drift, 0 = very slippery
 
 
+var Car_Checkpoints_Collected: int = 0
+
+var Car_Distance_to_Next_Checkpoint: float = 0
+
+#TODO:
+# Posicao dele no Espaco
 
 
 var Input_Replay_Iterator: int = 0
@@ -97,6 +103,7 @@ func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	
 func Kill_Car():
 	
+	#print(Score)
 	
 	global_position = Vector2(1101.0, 864.0)
 	rotation = 1.32626593112946

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://3aggd8ekblx0"]
+
+[ext_resource type="Script" uid="uid://vwimdm7uvgi2" path="res://Checkpoint_Counter.gd" id="1_ir6d7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0ffo"]
+size = Vector2(11.682022, 95.40724)
+
+[node name="PathFollow2D" type="PathFollow2D"]
+rotation = -0.25254273
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-3.3775673, -45.995136)
+scale = Vector2(1.0000001, 1.0000001)
+script = ExtResource("1_ir6d7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4.158499, 44.472794)
+scale = Vector2(1.0000005, 1.0000005)
+shape = SubResource("RectangleShape2D_y0ffo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -3.3775673
+offset_top = -45.99513
+offset_right = 4.78088
+offset_bottom = 44.126453
+color = Color(1, 0.13725491, 1, 1)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

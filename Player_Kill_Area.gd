@@ -1,7 +1,10 @@
 extends Area2D
 
-@onready var label: Label = $"../Label"
+@onready var you_lost_text: Label = $"../You Lost Text"
 
+@onready var score_text: Label = $"../You Lost Text/Score Text"
+
+@onready var curva: Path2D = $"../Curva"
 
 
 func _on_body_entered(body: Node2D) -> void:
@@ -9,7 +12,14 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body is Car:
 		
-		label.show()
+		you_lost_text.show()
+		
+		
+		curva.Distance_to_Closest_Checkpoint(body)
+		
+		score_text.text = "Number of Checkpoints: %d" % body.Car_Checkpoints_Collected
+		
+		score_text.text += "\n Distance to Closest Checkpoint: %f" % body.Car_Distance_to_Next_Checkpoint
 		
 		body.Kill_Car()
 		

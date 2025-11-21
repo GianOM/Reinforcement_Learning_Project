@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://4wttcr2gdd5m"]
+[gd_scene load_steps=7 format=3 uid="uid://4wttcr2gdd5m"]
 
 [ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
 [ext_resource type="Texture2D" uid="uid://cari14xlmlp1b" path="res://2014_Interlagos_circuit_map.svg.png" id="2_reufu"]
+[ext_resource type="PackedScene" uid="uid://3aggd8ekblx0" path="res://Checkpoint.tscn" id="3_f4sfo"]
+[ext_resource type="Script" uid="uid://dxrsg3w62efpk" path="res://Script_Curve_Manager.gd" id="3_ghoos"]
 [ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
 
 [sub_resource type="Curve2D" id="Curve2D_reufu"]
@@ -24,61 +26,102 @@ scale = Vector2(1.5, 1.5)
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("2_reufu")
 
-[node name="Cruva" type="Path2D" parent="."]
+[node name="Curva" type="Path2D" parent="."]
 curve = SubResource("Curve2D_reufu")
+script = ExtResource("3_ghoos")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Cruva"]
-position = Vector2(1403.3975, 791.5579)
-rotation = -0.25254273
-progress = 281.1274
+[node name="PathFollow2D1" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1527.0848, 756.2142)
+rotation = -0.33832335
+progress = 409.88376
 
-[node name="ColorRect" type="ColorRect" parent="Cruva/PathFollow2D"]
-offset_left = -3.3775673
-offset_top = -45.99513
-offset_right = 4.78088
-offset_bottom = 44.126453
-color = Color(1, 0.13725491, 1, 1)
+[node name="PathFollow2D2" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1518.4142, 592.83514)
+rotation = -1.4718508
+progress = 626.35187
 
-[node name="PathFollow2D2" type="PathFollow2D" parent="Cruva"]
-position = Vector2(1549.6462, 644.7807)
-rotation = -2.600004
-progress = 562.2548
+[node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1547.3837, 361.772)
+rotation = -1.9736371
+progress = 869.8082
 
-[node name="ColorRect" type="ColorRect" parent="Cruva/PathFollow2D2"]
-offset_left = -3.3775673
-offset_top = -45.99513
-offset_right = 4.78088
-offset_bottom = 44.126453
-color = Color(1, 0.13725491, 1, 1)
+[node name="PathFollow2D4" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(612.0151, 62.228645)
+rotation = 2.532034
+progress = 1872.8708
 
-[node name="PathFollow2D3" type="PathFollow2D" parent="Cruva"]
-position = Vector2(1555.9409, 386.7539)
-rotation = -1.8347757
-progress = 843.38226
+[node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(572.8086, 291.8151)
+rotation = 1.1928482
+progress = 2116.3271
 
-[node name="ColorRect" type="ColorRect" parent="Cruva/PathFollow2D3"]
-offset_left = -3.3775673
-offset_top = -45.99513
-offset_right = 4.78088
-offset_bottom = 44.126453
-color = Color(1, 0.13725491, 1, 1)
+[node name="PathFollow2D6" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(995.60095, 657.74255)
+rotation = 1.3654215
+progress = 2684.2046
+
+[node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(952.3959, 806.4365)
+rotation = 2.5011125
+progress = 2846.134
+
+[node name="PathFollow2D8" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(723.1761, 792.81683)
+rotation = -1.4031467
+progress = 3116.5786
+
+[node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(734.55286, 662.93646)
+rotation = -2.6681697
+progress = 3275.6965
+
+[node name="PathFollow2D10" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(420.92166, 753.2559)
+rotation = -1.352093
+progress = 3654.0942
+
+[node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(563.40717, 540.44305)
+rotation = -1.7396816
+progress = 3924.5388
+
+[node name="PathFollow2D12" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(297.88242, 327.4565)
+rotation = -3.0809247
+progress = 4275.948
+
+[node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(217.83995, 488.60516)
+rotation = 1.6321898
+progress = 4465.4277
+
+[node name="PathFollow2D14" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(341.0313, 799.2088)
+rotation = 0.6806335
+progress = 4806.1543
+
+[node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(834.25494, 921.1987)
+rotation = -0.078163415
+progress = 5319.493
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
 script = ExtResource("3_y0ffo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(1108, 820, 1506, 713, 1447, 604, 1504, 367, 635, 85, 597, 262, 1014, 579, 1050, 710, 1000, 806, 951, 834, 798, 867, 727, 870, 685, 831, 709, 763, 743, 721, 718, 679, 685, 689, 617, 755, 540, 799, 438, 809, 399, 796, 397, 729, 447, 696, 536, 603, 533, 512, 308, 351, 281, 388, 245, 492, 244, 536, 259, 601, 313, 723, 372, 791, 396, 811, 436, 827, 560, 857, 690, 887, 763, 898, 889, 887)
+polygon = PackedVector2Array(1101, 813, 1517, 707, 1465, 589, 1502, 379, 639, 101, 617, 275, 1014, 579, 1046, 650, 1000, 806, 983, 847, 798, 867, 727, 870, 685, 831, 670, 784, 720, 723, 710, 706, 684, 697, 617, 755, 540, 799, 412, 798, 397, 783, 370, 740, 443, 676, 512, 599, 513, 549, 500, 486, 308, 351, 281, 388, 266, 493, 267, 533, 276, 598, 313, 723, 373, 762, 384, 786, 407, 809, 578, 853, 690, 887, 833, 871, 985, 854)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, 16, -1, 1075, 318, 1079, 320, 831, 174, 699, 159, 481, 281, 288, 289, 0)
+polygon = PackedVector2Array(0, 16, -1, 1075, 318, 1079, 314, 836, 174, 699, 171, 486, 300, 279, 289, 0)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(283, 283, 417, 318, 553, 440, 626, 526, 600, 602, 536, 698, 460, 742, 471, 755, 539, 739, 633, 674, 696, 608, 765, 619, 806, 681, 801, 747, 776, 791, 801, 798, 918, 775, 950, 661, 545, 303, 497, 212, 580, 4, 294, -2)
+polygon = PackedVector2Array(299, 283, 417, 318, 553, 440, 612, 530, 600, 602, 536, 698, 468, 755, 468, 761, 539, 739, 633, 674, 696, 608, 765, 619, 806, 681, 801, 747, 773, 800, 811, 800, 927, 765, 950, 661, 532, 311, 497, 212, 584, 22, 294, -2)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(319, 832, 636, 971, 843, 979, 1577, 787, 1639, 731, 1629, 644, 1579, 592, 1627, 461, 1599, 310, 1517, 202, 872, 59, 589, 19, 607, -109, 2085, -83, 2082, 1163, 321, 1138)
+polygon = PackedVector2Array(314, 835, 636, 971, 843, 979, 1547, 801, 1639, 731, 1629, 644, 1566, 598, 1627, 461, 1591, 341, 1517, 202, 872, 59, 585, 22, 607, -109, 2085, -83, 2082, 1163, 321, 1138)
 
-[node name="Label" type="Label" parent="."]
+[node name="You Lost Text" type="Label" parent="."]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,5 +136,23 @@ theme_override_font_sizes/font_size = 200
 text = "You lost"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Score Text" type="Label" parent="You Lost Text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3862122
+anchor_top = 0.5813799
+anchor_right = 0.6085618
+anchor_bottom = 0.8053204
+offset_top = 0.34246826
+offset_right = 0.19592285
+offset_bottom = -0.3125
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Score: 15"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
