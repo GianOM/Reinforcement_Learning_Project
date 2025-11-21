@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh4sfdkxxj6k2"]
+
+[ext_resource type="Script" uid="uid://bk3evhofa8a75" path="res://Car_Controller.gd" id="1_6ek1b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_reufu"]
+radius = 0.1
+height = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reufu"]
+size = Vector2(0.21561432, 0.4940548)
+
+[node name="Player_Character_Car" type="CharacterBody2D"]
+z_index = 2
+rotation = 1.3262659
+scale = Vector2(54.000034, 54.00003)
+script = ExtResource("1_6ek1b")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("CapsuleMesh_reufu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.9999994)
+shape = SubResource("RectangleShape2D_reufu")

@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://4wttcr2gdd5m"]
+
+[ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
+[ext_resource type="Texture2D" uid="uid://cari14xlmlp1b" path="res://2014_Interlagos_circuit_map.svg.png" id="2_reufu"]
+[ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
+
+[sub_resource type="Curve2D" id="Curve2D_reufu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1130, 857, -43.10527, 25.657902, 43.10527, -25.657902, 1549, 747, 47.07483, 27.99044, -47.07483, -27.99044, 1550, 645, 0, 0, 0, 0, 1522, 579, -2.8223693, 11.289477, 2.8223693, -11.289477, 1563, 495, 59.83423, 50.238174, -59.83423, -50.238174, 1515, 316, 0, 0, 0, 0, 1360, 243, 46.184223, 8.723686, -46.184223, -8.723686, 660, 57, 12.828951, -23.092112, -12.828951, 23.092112, 591, 90, 0, 0, 0, 0, 557, 240, -27.064604, -29.570587, 27.064604, 29.570587, 598, 336, -31.518402, -26.848907, 31.518402, 26.848907, 973, 615, 0, 0, 0, 0, 998, 701, 54.708588, -28.838634, -54.708588, 28.838634, 942, 813, 32.231415, 9.754244, -32.231415, -9.754244, 751, 841, -1.2722927, 13.99522, 1.2722927, -13.99522, 723, 794, -15.69161, 24.173561, 15.69161, -24.173561, 764, 736, 21.628977, 18.660294, -21.628977, -18.660294, 745, 670, 15.267512, -11.450634, -15.267512, 11.450634, 680, 667, 53.436295, -27.566341, -53.436295, 27.566341, 571, 757, 22.053074, -1.2722927, -22.053074, 1.2722927, 450, 789, 0, 0, 0, 0, 422, 768, -11.026537, 11.450634, 11.026537, -11.450634, 427, 742, -11.968034, 62.253284, 11.968034, -62.253284, 562, 594, 18.891617, 25.44585, -18.891617, -25.44585, 531, 474, 30.789482, 17.960531, -30.789482, -17.960531, 320, 335, 5.644738, -9.750003, -5.644738, 9.750003, 268, 345, 5.1315804, -36.947376, -5.1315804, 36.947376, 219, 477, -9.750003, -32.842113, 9.750003, 32.842113, 233, 579, -29.250008, -47.723698, 29.250008, 47.723698, 299, 749, -96.47371, -27.197374, 96.47371, 27.197374, 455, 850, -100.51112, -17.388, 100.51112, 17.388, 747, 919, 0, 0, 0, 0, 1009, 888, 0, 0, 0, 0, 1130, 857)
+}
+point_count = 34
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player_Character_Car" parent="." instance=ExtResource("1_y0ffo")]
+process_mode = 3
+position = Vector2(1101, 864.00006)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(896, 514)
+rotation = 4.712389
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_reufu")
+
+[node name="Cruva" type="Path2D" parent="."]
+curve = SubResource("Curve2D_reufu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Cruva"]
+position = Vector2(1403.3975, 791.5579)
+rotation = -0.25254273
+progress = 281.1274
+
+[node name="ColorRect" type="ColorRect" parent="Cruva/PathFollow2D"]
+offset_left = -3.3775673
+offset_top = -45.99513
+offset_right = 4.78088
+offset_bottom = 44.126453
+color = Color(1, 0.13725491, 1, 1)
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Cruva"]
+position = Vector2(1549.6462, 644.7807)
+rotation = -2.600004
+progress = 562.2548
+
+[node name="ColorRect" type="ColorRect" parent="Cruva/PathFollow2D2"]
+offset_left = -3.3775673
+offset_top = -45.99513
+offset_right = 4.78088
+offset_bottom = 44.126453
+color = Color(1, 0.13725491, 1, 1)
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Cruva"]
+position = Vector2(1555.9409, 386.7539)
+rotation = -1.8347757
+progress = 843.38226
+
+[node name="ColorRect" type="ColorRect" parent="Cruva/PathFollow2D3"]
+offset_left = -3.3775673
+offset_top = -45.99513
+offset_right = 4.78088
+offset_bottom = 44.126453
+color = Color(1, 0.13725491, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_y0ffo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(1108, 820, 1506, 713, 1447, 604, 1504, 367, 635, 85, 597, 262, 1014, 579, 1050, 710, 1000, 806, 951, 834, 798, 867, 727, 870, 685, 831, 709, 763, 743, 721, 718, 679, 685, 689, 617, 755, 540, 799, 438, 809, 399, 796, 397, 729, 447, 696, 536, 603, 533, 512, 308, 351, 281, 388, 245, 492, 244, 536, 259, 601, 313, 723, 372, 791, 396, 811, 436, 827, 560, 857, 690, 887, 763, 898, 889, 887)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, 16, -1, 1075, 318, 1079, 320, 831, 174, 699, 159, 481, 281, 288, 289, 0)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(283, 283, 417, 318, 553, 440, 626, 526, 600, 602, 536, 698, 460, 742, 471, 755, 539, 739, 633, 674, 696, 608, 765, 619, 806, 681, 801, 747, 776, 791, 801, 798, 918, 775, 950, 661, 545, 303, 497, 212, 580, 4, 294, -2)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(319, 832, 636, 971, 843, 979, 1577, 787, 1639, 731, 1629, 644, 1579, 592, 1627, 461, 1599, 310, 1517, 202, 872, 59, 589, 19, 607, -109, 2085, -83, 2082, 1163, 321, 1138)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -11.5
+offset_right = 1920.0
+offset_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 200
+text = "You lost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
