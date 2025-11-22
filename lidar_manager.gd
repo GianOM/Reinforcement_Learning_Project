@@ -56,4 +56,4 @@ func _physics_process(delta: float) -> void:
 		right_ball.global_position = right_side_ray_cast.get_collision_point()
 		
 		
-	print(Tick_Ray_State)
+	#print(Tick_Ray_State)

@@ -3,7 +3,9 @@ extends Path2D
 
 func Distance_to_Closest_Checkpoint(Car_Instance: Car) -> void:
 	
-	var Temp_Path_Follow: PathFollow2D = get_child(Car_Instance.Car_Checkpoints_Collected)
+	
+	#BUG: Se pegarmos mais de 15 checkpoints RIP
+	var Temp_Path_Follow: PathFollow2D = get_child(Car_Instance.Car_Checkpoints_Collected % 15)
 	
 	
 	print(Temp_Path_Follow.name)

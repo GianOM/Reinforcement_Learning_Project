@@ -21,9 +21,11 @@ scale = Vector2(54.000034, 54.00003)
 script = ExtResource("1_6ek1b")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(-0.0025768722, -0.10381862)
 mesh = SubResource("CapsuleMesh_reufu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0025768746, -0.10381863)
 scale = Vector2(1, 0.9999994)
 shape = SubResource("RectangleShape2D_reufu")
 

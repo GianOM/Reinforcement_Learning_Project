@@ -12,24 +12,22 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body is Car:
 		
-		you_lost_text.show()
+		if not body.is_Car_in_Replay_Mode:
 		
-		
-		curva.Distance_to_Closest_Checkpoint(body)
-		
-		score_text.text = "Number of Checkpoints: %d" % body.Car_Checkpoints_Collected
-		
-		score_text.text += "\n Distance to Closest Checkpoint: %f" % body.Car_Distance_to_Next_Checkpoint
-		
-		score_text.text += "\n Number of Ticks: %f" % body.Tick_Penality
-		
-		body.Kill_Car()
-		
-		JSON_Exporter.Export_Car_States(body)
-		
-		get_tree().paused = true
-	
-	print(body.name)
-	
-	
-	pass # Replace with function body.
+			you_lost_text.show()
+			
+			
+			curva.Distance_to_Closest_Checkpoint(body)
+			
+			score_text.text = "Number of Checkpoints: %d" % body.Car_Checkpoints_Collected
+			
+			score_text.text += "\n Distance to Closest Checkpoint: %f" % body.Car_Distance_to_Next_Checkpoint
+			
+			score_text.text += "\n Number of Ticks: %f" % body.Tick_Penality
+			
+			body.Kill_Car()
+			
+			JSON_Exporter.Export_Car_States(body)
+			
+			get_tree().paused = true
+			
