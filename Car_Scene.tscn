@@ -14,33 +14,32 @@ size = Vector2(0.21561432, 0.4940548)
 radius = 0.1
 height = 0.2
 
-[node name="Player_Character_Car" type="CharacterBody2D"]
+[node name="Player_Character_Car" type="CharacterBody2D" unique_id=1973549469]
 z_index = 2
-rotation = 1.3262659
 scale = Vector2(54.000034, 54.00003)
 script = ExtResource("1_6ek1b")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=364068473]
 position = Vector2(-0.0025768722, -0.10381862)
 mesh = SubResource("CapsuleMesh_reufu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=295992357]
 position = Vector2(-0.0025768746, -0.10381863)
 scale = Vector2(1, 0.9999994)
 shape = SubResource("RectangleShape2D_reufu")
 
-[node name="Lidar_Manager" type="Node2D" parent="."]
+[node name="Lidar_Manager" type="Node2D" parent="." unique_id=284031744]
 scale = Vector2(1, 0.99999917)
 script = ExtResource("2_k0140")
 
-[node name="Front_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
+[node name="Front_Ray_Cast" type="RayCast2D" parent="Lidar_Manager" unique_id=1556536832]
 scale = Vector2(0.025, 0.15000014)
 target_position = Vector2(0, -150)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Left_Side_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
+[node name="Left_Side_Ray_Cast" type="RayCast2D" parent="Lidar_Manager" unique_id=265727979]
 rotation = -1.5707963
 scale = Vector2(0.02500002, 0.14999998)
 target_position = Vector2(0, -150)
@@ -48,7 +47,7 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Back_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
+[node name="Back_Ray_Cast" type="RayCast2D" parent="Lidar_Manager" unique_id=851978902]
 rotation = 3.1415927
 scale = Vector2(0.025, 0.15000013)
 target_position = Vector2(0, -150)
@@ -56,7 +55,7 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Right_Side_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
+[node name="Right_Side_Ray_Cast" type="RayCast2D" parent="Lidar_Manager" unique_id=596937782]
 rotation = 1.5707964
 scale = Vector2(0.025000019, 0.14999999)
 target_position = Vector2(0, -150)
@@ -64,22 +63,22 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Front_Ball" type="MeshInstance2D" parent="."]
+[node name="Front_Ball" type="MeshInstance2D" parent="." unique_id=702948206]
 modulate = Color(1, 0.16078432, 0, 1)
 position = Vector2(-0.99304366, -0.99215376)
 mesh = SubResource("SphereMesh_k0140")
 
-[node name="Left_Ball" type="MeshInstance2D" parent="."]
+[node name="Left_Ball" type="MeshInstance2D" parent="." unique_id=209088632]
 modulate = Color(1, 0.16078432, 0, 1)
 position = Vector2(-0.99304366, -0.99215376)
 mesh = SubResource("SphereMesh_k0140")
 
-[node name="Back_Ball" type="MeshInstance2D" parent="."]
+[node name="Back_Ball" type="MeshInstance2D" parent="." unique_id=1570169572]
 modulate = Color(1, 0.16078432, 0, 1)
 position = Vector2(-0.99304366, -0.99215376)
 mesh = SubResource("SphereMesh_k0140")
 
-[node name="Right_Ball" type="MeshInstance2D" parent="."]
+[node name="Right_Ball" type="MeshInstance2D" parent="." unique_id=527848193]
 modulate = Color(1, 0.16078432, 0, 1)
 position = Vector2(-0.99304366, -0.99215376)
 mesh = SubResource("SphereMesh_k0140")
