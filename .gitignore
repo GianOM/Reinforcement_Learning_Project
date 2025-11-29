@@ -1,3 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+AmbVirtual/Lib/site-packages/torch/lib/torch_cpu.dll
