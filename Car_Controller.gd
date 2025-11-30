@@ -61,7 +61,7 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	
 	if not is_Car_in_Replay_Mode:
-		
+		#print(Input.get_action_strength("Forward_Key"))
 		var input_forward : float = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
 		var input_turn :float  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
 		
@@ -135,7 +135,7 @@ func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 			
 			
 		
-	print(Front_Aceleration)
+	#print(Front_Aceleration)
 		
 func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	

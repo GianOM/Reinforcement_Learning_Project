@@ -124,7 +124,10 @@ class DQNAgent:
         if deterministic or random.random() > self.epsilon:
             with torch.no_grad():
                 q_values = self.policy_net(state.unsqueeze(0))
+
+            #Probabilidades da saida
             return int(torch.argmax(q_values, dim=1).item())
+        
         return random.randrange(self.action_dim)
 
     def store_transition(self, state: Tensor, action: int, reward: float, next_state: Tensor, done: bool) -> None:

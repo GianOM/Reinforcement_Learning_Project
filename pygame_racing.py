@@ -382,13 +382,22 @@ def check_checkpoint_hit(car: Car, track_config: Dict[str, Any], checkpoint_prog
 
 def build_agent_state(car: Car, track_config: Dict[str, Any], checkpoint_progress: int) -> Tensor:
     return build_state_vector(
+
+        #PARAMETROS DE ENTRADA DO CARRO
         ray_distances=car.ray_distances,
-        distance_to_finish=track_distance_to_target(car, track_config, checkpoint_progress),
-        angle_to_finish_rad=track_angle_to_target(car, track_config, checkpoint_progress),
+
+        distance_to_finish = track_distance_to_target(car, track_config, checkpoint_progress),
+
+        angle_to_finish_rad = track_angle_to_target(car, track_config, checkpoint_progress),
+
         orientation_rad=car.orientation_radians(),
+
         speed=car.speed,
+
         max_sensor_range=MAX_SENSOR_RANGE,
+
         max_finish_distance=track_config["max_finish_distance"],
+
         max_speed=car.max_speed,
     )
 
@@ -522,10 +531,17 @@ def main() -> None:
         control_override = None
 
         if ai_control and game_state == "running":
+            #Constroi o vetor de Features
             state_tensor = build_agent_state(car, track_config, checkpoint_progress)
+
+            #Alimenta o modelo para escolher uma saida
             action_index = agent.select_action(state_tensor, deterministic=not training_enabled)
+
+
             control_override = action_controls(action_index)
             last_action_label = ACTION_MEANINGS[action_index]
+
+
         elif not ai_control:
             last_action_label = "Manual"
 
