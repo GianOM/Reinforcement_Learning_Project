@@ -394,11 +394,11 @@ def build_agent_state(car: Car, track_config: Dict[str, Any], checkpoint_progres
 
         speed=car.speed,
 
-        max_sensor_range=MAX_SENSOR_RANGE,
+        #max_sensor_range=MAX_SENSOR_RANGE,
 
-        max_finish_distance=track_config["max_finish_distance"],
+        #max_finish_distance=track_config["max_finish_distance"],
 
-        max_speed=car.max_speed,
+        #max_speed=car.max_speed,
     )
 
 

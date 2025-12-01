@@ -7,29 +7,29 @@ var Teste_Tensor: Dictionary = {0:"Ian", 1: "Gian"}
 # Our WebSocketClient instance.
 var socket = WebSocketPeer.new()
 
-func _ready():
-	
-	# Initiate connection to the given URL.
-	var err = socket.connect_to_url(websocket_url)
-	
-	print(str(Teste_Tensor))
-	
-	if err == OK:
-		print("Connecting to %s..." % websocket_url)
-		# Wait for the socket to connect.
-		await get_tree().create_timer(4.0).timeout
-		
-		# Send data.
-		print("> Sending test packet.")
-		
-		#err = socket.send_text("Test packet")
-		
-		err = socket.send_text(str(Teste_Tensor))
-		
-		#print("Erro:" + err)
-	else:
-		push_error("Unable to connect.")
-		set_process(false)
+#func _ready():
+	#
+	## Initiate connection to the given URL.
+	#var err = socket.connect_to_url(websocket_url)
+	#
+	#print(str(Teste_Tensor))
+	#
+	#if err == OK:
+		#print("Connecting to %s..." % websocket_url)
+		## Wait for the socket to connect.
+		#await get_tree().create_timer(4.0).timeout
+		#
+		## Send data.
+		#print("> Sending test packet.")
+		#
+		##err = socket.send_text("Test packet")
+		#
+		#err = socket.send_text(str(Teste_Tensor))
+		#
+		##print("Erro:" + err)
+	#else:
+		#push_error("Unable to connect.")
+		#set_process(false)
 
 
 func _process(_delta):

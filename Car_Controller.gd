@@ -6,26 +6,20 @@ extends CharacterBody2D
 var acceleration :float = 0.01       # How fast the car accelerates
 var reverse_speed: float = 0.03
 
-var max_speed := 120.0             # Max forward speed
-
-
 var turn_speed := 0.9            # How fast the car rotates
 
-var friction := 2.5           # Resistance when no input
-
-
-
-var drift := 0.9                  # 1 = no drift, 0 = very slippery
+var friction :float = 0.99           # Resistance when no input
 
 
 var Car_Checkpoints_Collected: int = 0
 
+# As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
 var Car_Distance_to_Next_Checkpoint: float = 0
+var Car_Direction_to_Next_Checkpoing: float = 0
 
 
 ##Usado para penalizar o carro ficar parado
 var Tick_Penality: float = 0
-
 var Reward: float = 0
 
 #TODO:
@@ -39,9 +33,9 @@ var Input_List: Array[Vector2]
 
 var is_Car_in_Replay_Mode: bool = false
 
-func _ready() -> void:
-	print(rotation)
-	
+#func _ready() -> void:
+	#print(rotation)
+	#
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
@@ -101,6 +95,8 @@ func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 	
 	if Forward_Input_Amount > 0.05:
 		
+		
+		#Maxima velocidade quando esta indo pra frente
 		if Front_Aceleration < 0.05:
 			
 			Front_Aceleration += Forward_Input_Amount * acceleration * delta_Time
@@ -116,6 +112,7 @@ func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 		
 		if Forward_Input_Amount < -0.05:
 			
+			#Maxima velocidade quando esta dando Re
 			if Front_Aceleration < -0.01:
 				
 				#Se o carro atinge o limite de velocidade de re, adicionar 
@@ -141,10 +138,6 @@ func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	
 	rotation -= Steering_Input_Amount * turn_speed * delta_Time
 	
-	
-	
-	
-	
 func Kill_Car():
 	
 	#print(Score)
@@ -156,9 +149,5 @@ func Kill_Car():
 	Front_Aceleration = 0.0
 		
 	is_Car_in_Replay_Mode = true
-	
-	
-	
-	
 	
 	

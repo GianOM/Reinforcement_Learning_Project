@@ -27,9 +27,10 @@ scale = Vector2(1.5, 1.5)
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1214285635]
 texture = ExtResource("2_reufu")
 
-[node name="Curva" type="Path2D" parent="." unique_id=1498997291]
+[node name="Curva" type="Path2D" parent="." unique_id=1498997291 node_paths=PackedStringArray("Player_Car")]
 curve = SubResource("Curve2D_reufu")
 script = ExtResource("3_ghoos")
+Player_Car = NodePath("../Player_Character_Car")
 
 [node name="PathFollow2D1" parent="Curva" unique_id=1118242966 instance=ExtResource("3_f4sfo")]
 position = Vector2(1527.0848, 756.2142)

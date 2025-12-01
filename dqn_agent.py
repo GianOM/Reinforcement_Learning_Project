@@ -120,9 +120,13 @@ class DQNAgent:
 
     def select_action(self, state: Tensor, deterministic: bool = False) -> int:
         """Epsilon-greedy policy over the current Q-network."""
+        
         state = state.to(self.device)
+
         if deterministic or random.random() > self.epsilon:
+
             with torch.no_grad():
+
                 q_values = self.policy_net(state.unsqueeze(0))
 
             #Probabilidades da saida
@@ -193,10 +197,10 @@ def build_state_vector(
     angle_to_finish_rad: float,
     orientation_rad: float,
     speed: float,
-    *,
-    max_sensor_range: float,
-    max_finish_distance: float,
-    max_speed: float,
+    #*,
+    #max_sensor_range: float,
+    #max_finish_distance: float,
+    #max_speed: float,
 ) -> Tensor:
     """Create a normalized feature tensor matching the state layout.
 
@@ -214,14 +218,26 @@ def build_state_vector(
     def clamp_norm(value: float, max_value: float) -> float:
         return max(0.0, min(1.0, value / max_value if max_value > 0 else 0.0))
 
-    front = clamp_norm(ray_distances.get("front", 0.0), max_sensor_range)
-    rear = clamp_norm(ray_distances.get("rear", 0.0), max_sensor_range)
-    left = clamp_norm(ray_distances.get("left", 0.0), max_sensor_range)
-    right = clamp_norm(ray_distances.get("right", 0.0), max_sensor_range)
-    distance = clamp_norm(distance_to_finish, max_finish_distance)
+    #front = clamp_norm(ray_distances.get("front", 0.0), max_sensor_range)
+    front = ray_distances.get("front", 0.0)
+
+    #rear = clamp_norm(ray_distances.get("rear", 0.0), max_sensor_range)
+    rear = ray_distances.get("rear", 0.0)
+
+    #left = clamp_norm(ray_distances.get("left", 0.0), max_sensor_range)
+    left = ray_distances.get("left", 0.0)
+
+
+    #right = clamp_norm(ray_distances.get("right", 0.0), max_sensor_range)
+    right = ray_distances.get("right", 0.0)
+
+    #distance = clamp_norm(distance_to_finish, max_finish_distance)
+    distance = distance_to_finish
+
     angle = torch.tanh(torch.tensor([angle_to_finish_rad], dtype=torch.float32)).item()  # [-1, 1]
     heading = torch.sin(torch.tensor([orientation_rad], dtype=torch.float32)).item()
-    speed_norm = clamp_norm(speed, max_speed)
+    #speed_norm = clamp_norm(speed, max_speed)
+    speed_norm = speed
 
     state = torch.tensor(
         [front, rear, left, right, distance, angle, heading, speed_norm],

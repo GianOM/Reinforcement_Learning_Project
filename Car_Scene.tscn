@@ -102,3 +102,5 @@ modulate = Color(0, 1, 1, 1)
 position = Vector2(0, -0.24074066)
 scale = Vector2(0.14814834, 0.11111081)
 mesh = SubResource("BoxMesh_k0140")
+
+[node name="AI" type="Node" parent="." unique_id=947731035]
