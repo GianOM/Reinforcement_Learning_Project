@@ -1,7 +1,8 @@
 class_name Car
 extends CharacterBody2D 
 
-@onready var green_arrow: Sprite2D = $"Green Arrow"
+
+@onready var lidar_manager: Node2D = $Lidar_Manager
 
 var acceleration :float = 0.01       # How fast the car accelerates
 var reverse_speed: float = 0.03
@@ -32,6 +33,8 @@ var Input_Replay_Iterator: int = 0
 var Input_List: Array[Vector2]
 
 var is_Car_in_Replay_Mode: bool = false
+
+
 
 #func _ready() -> void:
 	#print(rotation)

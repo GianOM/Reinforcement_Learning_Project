@@ -7,29 +7,31 @@ var Teste_Tensor: Dictionary = {0:"Ian", 1: "Gian"}
 # Our WebSocketClient instance.
 var socket = WebSocketPeer.new()
 
-#func _ready():
-	#
-	## Initiate connection to the given URL.
-	#var err = socket.connect_to_url(websocket_url)
-	#
-	#print(str(Teste_Tensor))
-	#
-	#if err == OK:
-		#print("Connecting to %s..." % websocket_url)
-		## Wait for the socket to connect.
-		#await get_tree().create_timer(4.0).timeout
-		#
-		## Send data.
-		#print("> Sending test packet.")
-		#
-		##err = socket.send_text("Test packet")
-		#
-		#err = socket.send_text(str(Teste_Tensor))
-		#
-		##print("Erro:" + err)
-	#else:
-		#push_error("Unable to connect.")
-		#set_process(false)
+func _ready():
+	
+	# Initiate connection to the given URL.
+	var err = socket.connect_to_url(websocket_url)
+	
+	print(str(Teste_Tensor))
+	
+	if err == OK:
+		print("Connecting to %s..." % websocket_url)
+		# Wait for the socket to connect.
+		await get_tree().create_timer(4.0).timeout
+		
+		# Send data.
+		print("> Sending test packet.")
+		
+		#err = socket.send_text("Test packet")
+		
+		err = socket.send_text(str(Teste_Tensor))
+		
+		socket.poll()
+		
+		#print("Erro:" + err)
+	else:
+		push_error("Unable to connect.")
+		set_process(false)
 
 
 func _process(_delta):
@@ -39,7 +41,7 @@ func _process(_delta):
 
 	# get_ready_state() tells you what state the socket is in.
 	var state = socket.get_ready_state()
-
+	
 	# `WebSocketPeer.STATE_OPEN` means the socket is connected and ready
 	# to send and receive data.
 	if state == WebSocketPeer.STATE_OPEN:
@@ -63,3 +65,35 @@ func _process(_delta):
 		var code = socket.get_close_code()
 		print("WebSocket closed with code: %d. Clean: %s" % [code, code != -1])
 		set_process(false) # Stop processing.
+		
+		
+func Send_Message(Message_to_Send: String):
+	
+	socket.poll()
+	
+	var state = socket.get_ready_state()
+	
+	var err:Error
+	#err = socket.send_text(str(Time.get_ticks_msec()))
+	err = socket.send_text(Message_to_Send)
+	
+	# `WebSocketPeer.STATE_OPEN` means the socket is connected and ready
+	# to send and receive data.
+	if state == WebSocketPeer.STATE_OPEN:
+		while socket.get_available_packet_count():
+			var packet = socket.get_packet()
+			if socket.was_string_packet():
+				var packet_text = packet.get_string_from_utf8()
+				print("< Got text data from server: %s" % packet_text)
+			else:
+				print("< Got binary data from server: %d bytes" % packet.size())
+				
+				
+	elif state == WebSocketPeer.STATE_CLOSED:
+		# The code will be `-1` if the disconnection was not properly notified by the remote peer.
+		var code = socket.get_close_code()
+		print("WebSocket closed with code: %d. Clean: %s" % [code, code != -1])
+		set_process(false) # Stop processing.
+	
+	
+	pass

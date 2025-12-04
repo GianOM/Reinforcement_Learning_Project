@@ -19,13 +19,26 @@ class Car_Agent_State:
 		
 		var Temp_Text: String = ""
 		
-		Temp_Text += "Car Speed:" + str(Car_Speed) + "\n"
-		Temp_Text += "Car Rotation:" + str(Car_rotation) + "\n"
+		##Car Speed:
+		#Temp_Text += "Car Speed:" + str(Car_Speed) + "\n"
+		Temp_Text += str(Car_Speed) + ","
 		
-		Temp_Text += "Checkpoint Distance:" + str(Checkpoint_Distance) + "\n"
-		Temp_Text += "Chepoint Angle:" + str(Chepoint_Angle) + "\n"
+		##Car Rotation:
+		#Temp_Text += "Car Rotation:" + str(Car_rotation) + "\n"
+		Temp_Text += str(Car_rotation) + ","
 		
-		Temp_Text += "Front, Back, Left, Right Ray Distances: " + str(Front_Collision_Ray_Distance) + "," + str(Back_Collision_Ray_Distance) + "," + str(Left_Side_Collision_Ray_Distance) + "," + str(Right_Side_Collision_Ray_Distance) + "\n"
+		##Checkpoint Distance:
+		#Temp_Text += "Checkpoint Distance:" + str(Checkpoint_Distance) + "\n"
+		Temp_Text += str(Checkpoint_Distance) + ","
+		
+		##Checkpoint Angle:
+		#Temp_Text += "Chepoint Angle:" + str(Chepoint_Angle) + "\n"
+		Temp_Text += str(Chepoint_Angle) + ","
+		
+		##Front, Back, Left, Right Ray Distances:
+		#Temp_Text += "Front, Back, Left, Right Ray Distances: " + str(Front_Collision_Ray_Distance) + "," + str(Back_Collision_Ray_Distance) + "," + str(Left_Side_Collision_Ray_Distance) + "," + str(Right_Side_Collision_Ray_Distance) + "\n"
+		Temp_Text += str(Front_Collision_Ray_Distance) + "," + str(Back_Collision_Ray_Distance) + "," + str(Left_Side_Collision_Ray_Distance) + "," + str(Right_Side_Collision_Ray_Distance)
+		
 		
 		return Temp_Text
 	
@@ -45,11 +58,12 @@ class Car_Agent_State:
 @onready var right_ball: MeshInstance2D = $"../Right_Ball"
 
 var Ray_Casts_States: Array[Car_Agent_State]
+var Car_Frame_State: Car_Agent_State
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	
-	var Car_Frame_State: Car_Agent_State = Car_Agent_State.new()
+	Car_Frame_State = Car_Agent_State.new()
 	
 	
 	Car_Frame_State.Car_Speed = (player_character_car.Front_Aceleration / 0.05)
@@ -79,5 +93,8 @@ func _physics_process(delta: float) -> void:
 		Car_Frame_State.Right_Side_Collision_Ray_Distance = right_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position)
 		right_ball.global_position = right_side_ray_cast.get_collision_point()
 		
-	print(Car_Frame_State)
+		
+		
+	WSocket.Send_Message(str(Car_Frame_State))
+	#print(Car_Frame_State)
 	

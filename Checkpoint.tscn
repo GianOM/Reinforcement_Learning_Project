@@ -5,20 +5,20 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0ffo"]
 size = Vector2(11.682022, 95.40724)
 
-[node name="PathFollow2D" type="PathFollow2D"]
+[node name="PathFollow2D" type="PathFollow2D" unique_id=852067844]
 rotation = -0.25254273
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1454598784]
 position = Vector2(-3.3775673, -45.995136)
 scale = Vector2(1.0000001, 1.0000001)
 script = ExtResource("1_ir6d7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=588534256]
 position = Vector2(4.158499, 44.472794)
 scale = Vector2(1.0000005, 1.0000005)
 shape = SubResource("RectangleShape2D_y0ffo")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2067973737]
 offset_left = -3.3775673
 offset_top = -45.99513
 offset_right = 4.78088
