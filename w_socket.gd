@@ -73,13 +73,17 @@ func Send_Message(Message_to_Send: String):
 	
 	var state = socket.get_ready_state()
 	
-	var err:Error
-	#err = socket.send_text(str(Time.get_ticks_msec()))
-	err = socket.send_text(Message_to_Send)
+	
 	
 	# `WebSocketPeer.STATE_OPEN` means the socket is connected and ready
 	# to send and receive data.
 	if state == WebSocketPeer.STATE_OPEN:
+		
+		var err:Error
+		#err = socket.send_text(str(Time.get_ticks_msec()))
+		err = socket.send_text(Message_to_Send)
+		
+		
 		while socket.get_available_packet_count():
 			var packet = socket.get_packet()
 			if socket.was_string_packet():

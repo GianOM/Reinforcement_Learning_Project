@@ -3,12 +3,13 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Optional
+import asyncio
 
 import pygame
 from torch import Tensor
 
 from dqn_agent import ACTION_MEANINGS, DQNAgent, build_state_vector
-
+from w_socket_Manager import start_server, send_message
 
 WINDOW_WIDTH = 900
 WINDOW_HEIGHT = 700
@@ -623,6 +624,22 @@ def main() -> None:
         pygame.display.flip()
 
 
+async def main():
+    
+    await start_server()
+
+    await asyncio.sleep(2)  # Wait for server to initialize
+
+    # Send a message to Godot
+    await send_message("Hello from Python!")
+
+
+
 if __name__ == "__main__":
-    main()
+
+    asyncio.run(main())
+
+    
+
+    #main()
 

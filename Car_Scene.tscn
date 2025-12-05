@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh4sfdkxxj6k2"]
+[gd_scene load_steps=7 format=3 uid="uid://dh4sfdkxxj6k2"]
 
 [ext_resource type="Script" uid="uid://bk3evhofa8a75" path="res://Car_Controller.gd" id="1_6ek1b"]
 [ext_resource type="Script" uid="uid://byhb0qwomd3df" path="res://lidar_manager.gd" id="2_k0140"]
-[ext_resource type="Texture2D" uid="uid://dfhseiob2h23v" path="res://Small Green Arrow.png" id="2_loc1n"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_reufu"]
 radius = 0.1
@@ -21,13 +20,6 @@ height = 0.2
 z_index = 2
 scale = Vector2(54.000034, 54.00003)
 script = ExtResource("1_6ek1b")
-
-[node name="Green Arrow" type="Sprite2D" parent="." unique_id=1867222068]
-visible = false
-z_index = 8
-position = Vector2(0, -0.57407373)
-scale = Vector2(0.00042087512, 0.001)
-texture = ExtResource("2_loc1n")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=364068473]
 position = Vector2(-0.0025768722, -0.10381862)
