@@ -2,7 +2,7 @@ extends Node
 
 @export var websocket_url: String = "ws://127.0.0.1:8080"
 
-var Teste_Tensor: Dictionary = {0:"Ian", 1: "Gian"}
+var Teste_Tensor: String = "0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0"
 
 # Our WebSocketClient instance.
 var socket = WebSocketPeer.new()
@@ -49,6 +49,12 @@ func _process(_delta):
 			var packet = socket.get_packet()
 			if socket.was_string_packet():
 				var packet_text = packet.get_string_from_utf8()
+				
+				var Input_Vector = parse_floats(packet_text)
+				
+				Game_Manager.Send_Inputs_to_Car.emit(Input_Vector.x,Input_Vector.y)
+				
+				
 				print("< Got text data from server: %s" % packet_text)
 			else:
 				print("< Got binary data from server: %d bytes" % packet.size())
@@ -85,11 +91,20 @@ func Send_Message(Message_to_Send: String):
 		
 		
 		while socket.get_available_packet_count():
+			
 			var packet = socket.get_packet()
+			
 			if socket.was_string_packet():
+				
 				var packet_text = packet.get_string_from_utf8()
+				#var Input_Vector = parse_floats(packet_text)
+				
+				#Game_Manager.Send_Inputs_to_Car.emit(Input_Vector.x,Input_Vector.y)
+				
 				print("< Got text data from server: %s" % packet_text)
+				
 			else:
+				
 				print("< Got binary data from server: %d bytes" % packet.size())
 				
 				
@@ -101,3 +116,14 @@ func Send_Message(Message_to_Send: String):
 	
 	
 	pass
+	
+	
+func parse_floats(input_string: String) -> Vector2:
+	var parts = input_string.split(",")
+	if parts.size() != 2:
+		push_error("Invalid float pair: %s" % input_string)
+		return Vector2.ZERO
+		
+	var x = parts[0].to_float()
+	var y = parts[1].to_float()
+	return Vector2(x, y)

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 JSON_Exporter="*res://json_exporter.gd"
 WSocket="*uid://ci1osb561hgkj"
+Game_Manager="*uid://c4mcx7nmwxehx"
 
 [display]
 

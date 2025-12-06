@@ -1,6 +1,13 @@
 class_name Car
 extends CharacterBody2D 
 
+enum Car_Mode{
+	AI_CONTROLLED,
+	PLAYER_CONTROLLED,
+	REPLAY_MODE
+}
+
+
 
 @onready var lidar_manager: Node2D = $Lidar_Manager
 
@@ -32,13 +39,19 @@ var Front_Aceleration: float = 0.0
 var Input_Replay_Iterator: int = 0
 var Input_List: Array[Vector2]
 
-var is_Car_in_Replay_Mode: bool = false
+
+#var My_Car_Mode: Car_Mode = Car_Mode.PLAYER_CONTROLLED
+var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
+
+var input_forward : float
+var input_turn :float
 
 
-
-#func _ready() -> void:
+func _ready() -> void:
+	
+	Game_Manager.Send_Inputs_to_Car.connect(Receive_AI_Inputs)
 	#print(rotation)
-	#
+	
 
 @warning_ignore("unused_parameter")
 func _input(event: InputEvent) -> void:
@@ -51,39 +64,61 @@ func _input(event: InputEvent) -> void:
 		Front_Vector = transform.y
 		Front_Aceleration = 0.0
 		
+		My_Car_Mode = Car_Mode.REPLAY_MODE
 		
-		is_Car_in_Replay_Mode = true
-		
-
+func Receive_AI_Inputs(Forward: float, Turn: float):
+	
+	
+	input_forward = Forward
+	input_turn = Turn
+	
+	print("Input Changed")
+	pass
+	
+	
 func _physics_process(delta: float) -> void:
 	
-	if not is_Car_in_Replay_Mode:
-		#print(Input.get_action_strength("Forward_Key"))
-		var input_forward : float = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
-		var input_turn :float  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
+	match My_Car_Mode:
 		
-		handle_steering(input_turn, delta)
-		handle_acceleration(input_forward, delta)
-		
-		
-		
-		position -= Front_Vector * Front_Aceleration
-		
-		Input_List.append(Vector2(input_forward, input_turn))
-		
-		Tick_Penality -= 0.005
-		
-	else:
-		
-		if Input_Replay_Iterator < Input_List.size():
+		Car_Mode.AI_CONTROLLED:
 			
-			handle_steering(Input_List[Input_Replay_Iterator].y, delta)
-			handle_acceleration(Input_List[Input_Replay_Iterator].x, delta)
+			#input_forward = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
+			#input_turn  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
+			
+			handle_steering(input_turn, delta)
+			handle_acceleration(input_forward, delta)
+			
+			print(input_forward)
+			
+			position -= Front_Vector * Front_Aceleration
+			Input_List.append(Vector2(input_forward, input_turn))
+			Tick_Penality -= 0.005
+			
+		Car_Mode.PLAYER_CONTROLLED:
+			
+			
+			input_forward = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
+			input_turn  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
+			
+			handle_steering(input_turn, delta)
+			handle_acceleration(input_forward, delta)
 			
 			
 			position -= Front_Vector * Front_Aceleration
+			Input_List.append(Vector2(input_forward, input_turn))
+			Tick_Penality -= 0.005
 			
-			Input_Replay_Iterator += 1
+		Car_Mode.REPLAY_MODE:
+			
+			if Input_Replay_Iterator < Input_List.size():
+			
+				handle_steering(Input_List[Input_Replay_Iterator].y, delta)
+				handle_acceleration(Input_List[Input_Replay_Iterator].x, delta)
+				
+				
+				position -= Front_Vector * Front_Aceleration
+				
+				Input_Replay_Iterator += 1
 		
 		
 	#green_arrow.look_at(position + velocity)
@@ -151,6 +186,6 @@ func Kill_Car():
 	Front_Vector = transform.y
 	Front_Aceleration = 0.0
 		
-	is_Car_in_Replay_Mode = true
+	My_Car_Mode = Car_Mode.REPLAY_MODE
 	
 	

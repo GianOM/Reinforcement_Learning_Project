@@ -12,7 +12,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body is Car:
 		
-		if not body.is_Car_in_Replay_Mode:
+		if not body.My_Car_Mode == Car.Car_Mode.REPLAY_MODE:
 		
 			you_lost_text.show()
 			

@@ -625,13 +625,8 @@ def main() -> None:
 
 
 async def main():
-    
+
     await start_server()
-
-    await asyncio.sleep(2)  # Wait for server to initialize
-
-    # Send a message to Godot
-    await send_message("Hello from Python!")
 
 
 
