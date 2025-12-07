@@ -186,6 +186,6 @@ func Kill_Car():
 	Front_Vector = transform.y
 	Front_Aceleration = 0.0
 		
-	My_Car_Mode = Car_Mode.REPLAY_MODE
+	#My_Car_Mode = Car_Mode.REPLAY_MODE
 	
 	

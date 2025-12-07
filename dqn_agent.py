@@ -41,6 +41,7 @@ ACTION_MEANINGS: Tuple[str, ...] = (
 
 
 class QNetwork(nn.Module):
+
     """Simple MLP that maps state features to Q-values for each discrete action."""
 
     def __init__(self, input_dim: int, output_dim: int, hidden_sizes: Sequence[int] = (256, 256)) -> None:
@@ -73,6 +74,7 @@ class DQNConfig:
 
 
 class ReplayBuffer:
+
     """FIFO buffer storing (state, action, reward, next_state, done) tuples."""
 
     def __init__(self, capacity: int, state_dim: int) -> None:
@@ -84,9 +86,13 @@ class ReplayBuffer:
         self.buffer.append((state.detach().clone(), int(action), float(reward), next_state.detach().clone(), bool(done)))
 
     def sample(self, batch_size: int, device: torch.device) -> Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
+        
         batch = random.sample(self.buffer, batch_size)
+
         states, actions, rewards, next_states, dones = zip(*batch)
+
         return (
+
             torch.stack(states).to(device),
             torch.tensor(actions, dtype=torch.long, device=device),
             torch.tensor(rewards, dtype=torch.float32, device=device),
