@@ -48,16 +48,19 @@ func _process(_delta):
 		while socket.get_available_packet_count():
 			var packet = socket.get_packet()
 			if socket.was_string_packet():
-				var packet_text = packet.get_string_from_utf8()
+				var packet_text: String = packet.get_string_from_utf8()
 				
-				var Input_Vector = parse_floats(packet_text)
+				if packet_text == "RESET":
+					Game_Manager.RESET_CAR.emit()
 				
-				Game_Manager.Send_Inputs_to_Car.emit(Input_Vector.x,Input_Vector.y)
+				else:
+					var Input_Vector = parse_floats(packet_text)
+					Game_Manager.Send_Inputs_to_Car.emit(Input_Vector.x,Input_Vector.y)
 				
+				#print("< Got text data from server: %s" % packet_text)
 				
-				print("< Got text data from server: %s" % packet_text)
-			else:
-				print("< Got binary data from server: %d bytes" % packet.size())
+			#else:
+				#print("< Got binary data from server: %d bytes" % packet.size())
 
 	# `WebSocketPeer.STATE_CLOSING` means the socket is closing.
 	# It is important to keep polling for a clean close.
@@ -102,11 +105,11 @@ func Send_Message(Message_to_Send: String):
 				
 				#Game_Manager.Send_Inputs_to_Car.emit(Input_Vector.x,Input_Vector.y)
 				
-				print("< Got text data from server: %s" % packet_text)
+				#print("< Got text data from server: %s" % packet_text)
 				
-			else:
+			#else:
 				
-				print("< Got binary data from server: %d bytes" % packet.size())
+				#print("< Got binary data from server: %d bytes" % packet.size())
 				
 				
 	elif state == WebSocketPeer.STATE_CLOSED:

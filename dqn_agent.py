@@ -35,8 +35,7 @@ ACTION_MEANINGS: Tuple[str, ...] = (
     "throttle",          # Accelerate straight
     "steer_left",        # Steer left without throttle
     "steer_right",       # Steer right without throttle
-    "throttle_left",     # Accelerate while steering left
-    "throttle_right",    # Accelerate while steering right
+    #"reverse",     # Accelerate while steering left
 )
 
 
@@ -68,7 +67,8 @@ class DQNConfig:
     tau: float = 5e-3
     epsilon_start: float = 1.0
     epsilon_final: float = 0.05
-    epsilon_decay: float = 5e-5  # per training step
+    #epsilon_decay: float = 5e-5  # per training step
+    epsilon_decay: float = 0.001  # per training step
     device: str = "cpu"
     hidden_sizes: Sequence[int] = field(default_factory=lambda: (256, 256))
 
@@ -122,7 +122,7 @@ class DQNAgent:
         self.memory = ReplayBuffer(self.config.buffer_size, self.state_dim)
 
         self.epsilon = self.config.epsilon_start
-        self.training_steps = 0
+        #self.training_steps = 0
 
     def select_action(self, state: Tensor, deterministic: bool = False) -> int:
         """Epsilon-greedy policy over the current Q-network."""
@@ -142,7 +142,7 @@ class DQNAgent:
 
     def store_transition(self, state: Tensor, action: int, reward: float, next_state: Tensor, done: bool) -> None:
         self.memory.push(state, action, reward, next_state, done)
-
+    # TODO: Otimizar
     def train_step(self) -> None:
         if len(self.memory) < self.config.batch_size:
             return
@@ -190,7 +190,7 @@ class DQNAgent:
         )
 
     def load(self, path: str) -> None:
-        checkpoint = torch.load(path, map_location=self.device)
+        checkpoint = torch.load(path, map_location=self.device,weights_only=False)
         self.policy_net.load_state_dict(checkpoint["policy_state_dict"])
         self.target_net.load_state_dict(checkpoint["target_state_dict"])
         self.optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
@@ -203,10 +203,6 @@ def build_state_vector(
     angle_to_finish_rad: float,
     orientation_rad: float,
     speed: float,
-    #*,
-    #max_sensor_range: float,
-    #max_finish_distance: float,
-    #max_speed: float,
 ) -> Tensor:
     """Create a normalized feature tensor matching the state layout.
 
@@ -240,8 +236,12 @@ def build_state_vector(
     #distance = clamp_norm(distance_to_finish, max_finish_distance)
     distance = distance_to_finish
 
-    angle = torch.tanh(torch.tensor([angle_to_finish_rad], dtype=torch.float32)).item()  # [-1, 1]
-    heading = torch.sin(torch.tensor([orientation_rad], dtype=torch.float32)).item()
+    #angle = torch.tanh(torch.tensor([angle_to_finish_rad], dtype=torch.float32)).item()  # [-1, 1]
+    #heading = torch.sin(torch.tensor([orientation_rad], dtype=torch.float32)).item()
+
+    angle = angle_to_finish_rad  # [-1, 1]
+    heading = orientation_rad
+
     #speed_norm = clamp_norm(speed, max_speed)
     speed_norm = speed
 
@@ -250,4 +250,3 @@ def build_state_vector(
         dtype=torch.float32,
     )
     return state
-

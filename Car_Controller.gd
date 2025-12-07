@@ -7,17 +7,15 @@ enum Car_Mode{
 	REPLAY_MODE
 }
 
-
+#var My_Car_Mode: Car_Mode = Car_Mode.PLAYER_CONTROLLED
+var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
 
 @onready var lidar_manager: Node2D = $Lidar_Manager
 
 var acceleration :float = 0.01       # How fast the car accelerates
 var reverse_speed: float = 0.03
-
 var turn_speed := 0.9            # How fast the car rotates
-
 var friction :float = 0.99           # Resistance when no input
-
 
 var Car_Checkpoints_Collected: int = 0
 
@@ -25,10 +23,11 @@ var Car_Checkpoints_Collected: int = 0
 var Car_Distance_to_Next_Checkpoint: float = 0
 var Car_Direction_to_Next_Checkpoing: float = 0
 
+var is_Car_Crashed: bool = false
+
 
 ##Usado para penalizar o carro ficar parado
-var Tick_Penality: float = 0
-var Reward: float = 0
+var Tick_Penality: float = 0.0
 
 #TODO:
 # Posicao dele no Espaco
@@ -40,8 +39,7 @@ var Input_Replay_Iterator: int = 0
 var Input_List: Array[Vector2]
 
 
-#var My_Car_Mode: Car_Mode = Car_Mode.PLAYER_CONTROLLED
-var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
+
 
 var input_forward : float
 var input_turn :float
@@ -50,6 +48,8 @@ var input_turn :float
 func _ready() -> void:
 	
 	Game_Manager.Send_Inputs_to_Car.connect(Receive_AI_Inputs)
+	
+	Game_Manager.RESET_CAR.connect(Kill_Car)
 	#print(rotation)
 	
 
@@ -72,8 +72,7 @@ func Receive_AI_Inputs(Forward: float, Turn: float):
 	input_forward = Forward
 	input_turn = Turn
 	
-	print("Input Changed")
-	pass
+	#print("Input Changed")
 	
 	
 func _physics_process(delta: float) -> void:
@@ -82,31 +81,31 @@ func _physics_process(delta: float) -> void:
 		
 		Car_Mode.AI_CONTROLLED:
 			
-			#input_forward = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
-			#input_turn  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
+			if not is_Car_Crashed:
 			
-			handle_steering(input_turn, delta)
-			handle_acceleration(input_forward, delta)
-			
-			print(input_forward)
-			
-			position -= Front_Vector * Front_Aceleration
-			Input_List.append(Vector2(input_forward, input_turn))
-			Tick_Penality -= 0.005
+				handle_steering(input_turn, delta)
+				handle_acceleration(input_forward, delta)
+				
+				#print(input_forward)
+				
+				position -= Front_Vector * Front_Aceleration
+				Input_List.append(Vector2(input_forward, input_turn))
+				Tick_Penality -= 0.005
 			
 		Car_Mode.PLAYER_CONTROLLED:
 			
-			
-			input_forward = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
-			input_turn  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
-			
-			handle_steering(input_turn, delta)
-			handle_acceleration(input_forward, delta)
-			
-			
-			position -= Front_Vector * Front_Aceleration
-			Input_List.append(Vector2(input_forward, input_turn))
-			Tick_Penality -= 0.005
+			if not is_Car_Crashed:
+				
+				input_forward = Input.get_action_strength("Forward_Key") - Input.get_action_strength("Backward_Key")
+				input_turn  = Input.get_action_strength("Left_Side_Turn_Key") - Input.get_action_strength("Right_Side_Turn_Key")
+				
+				handle_steering(input_turn, delta)
+				handle_acceleration(input_forward, delta)
+				
+				
+				position -= Front_Vector * Front_Aceleration
+				Input_List.append(Vector2(input_forward, input_turn))
+				Tick_Penality -= 0.005
 			
 		Car_Mode.REPLAY_MODE:
 			
@@ -178,14 +177,22 @@ func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	
 func Kill_Car():
 	
-	#print(Score)
-	
 	global_position = Vector2(1101.0, 864.0)
 	rotation = 1.32626593112946
 		
 	Front_Vector = transform.y
 	Front_Aceleration = 0.0
-		
-	#My_Car_Mode = Car_Mode.REPLAY_MODE
 	
+	is_Car_Crashed = false
+		
+	Car_Checkpoints_Collected = 0
+	# As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
+	Car_Distance_to_Next_Checkpoint = 0.0
+	Car_Direction_to_Next_Checkpoing = 0.0
+		
+		
+	##Usado para penalizar o carro ficar parado
+	Tick_Penality = 0.0
+	
+	lidar_manager.has_AI_Car_Crashed = false
 	

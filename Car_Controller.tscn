@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://4wttcr2gdd5m"]
+[gd_scene load_steps=10 format=3 uid="uid://4wttcr2gdd5m"]
 
 [ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
 [ext_resource type="Texture2D" uid="uid://cari14xlmlp1b" path="res://2014_Interlagos_circuit_map.svg.png" id="2_reufu"]
 [ext_resource type="PackedScene" uid="uid://3aggd8ekblx0" path="res://Checkpoint.tscn" id="3_f4sfo"]
 [ext_resource type="Script" uid="uid://dxrsg3w62efpk" path="res://Script_Curve_Manager.gd" id="3_ghoos"]
 [ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
+[ext_resource type="Script" uid="uid://c3d3wtj0ep5jt" path="res://kill.gd" id="5_pxuqu"]
+[ext_resource type="Script" uid="uid://cn8jc1gabbk4y" path="res://Apressador.gd" id="6_46m4f"]
 
 [sub_resource type="Curve2D" id="Curve2D_reufu"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1130, 857, -43.10527, 25.657902, 43.10527, -25.657902, 1549, 747, 47.07483, 27.99044, -47.07483, -27.99044, 1550, 645, 0, 0, 0, 0, 1522, 579, -2.8223693, 11.289477, 2.8223693, -11.289477, 1563, 495, 59.83423, 50.238174, -59.83423, -50.238174, 1515, 316, 0, 0, 0, 0, 1360, 243, 46.184223, 8.723686, -46.184223, -8.723686, 660, 57, 12.828951, -23.092112, -12.828951, 23.092112, 591, 90, 0, 0, 0, 0, 557, 240, -27.064604, -29.570587, 27.064604, 29.570587, 598, 336, -31.518402, -26.848907, 31.518402, 26.848907, 973, 615, 0, 0, 0, 0, 998, 701, 54.708588, -28.838634, -54.708588, 28.838634, 942, 813, 32.231415, 9.754244, -32.231415, -9.754244, 751, 841, -1.2722927, 13.99522, 1.2722927, -13.99522, 723, 794, -15.69161, 24.173561, 15.69161, -24.173561, 764, 736, 21.628977, 18.660294, -21.628977, -18.660294, 745, 670, 15.267512, -11.450634, -15.267512, 11.450634, 680, 667, 53.436295, -27.566341, -53.436295, 27.566341, 571, 757, 22.053074, -1.2722927, -22.053074, 1.2722927, 450, 789, 0, 0, 0, 0, 422, 768, -11.026537, 11.450634, 11.026537, -11.450634, 427, 742, -11.968034, 62.253284, 11.968034, -62.253284, 562, 594, 18.891617, 25.44585, -18.891617, -25.44585, 531, 474, 30.789482, 17.960531, -30.789482, -17.960531, 320, 335, 5.644738, -9.750003, -5.644738, 9.750003, 268, 345, 5.1315804, -36.947376, -5.1315804, 36.947376, 219, 477, -9.750003, -32.842113, 9.750003, 32.842113, 233, 579, -29.250008, -47.723698, 29.250008, 47.723698, 299, 749, -96.47371, -27.197374, 96.47371, 27.197374, 455, 850, -100.51112, -17.388, 100.51112, 17.388, 747, 919, 0, 0, 0, 0, 1009, 888, 0, 0, 0, 0, 1130, 857)
 }
 point_count = 34
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghoos"]
+size = Vector2(20, 135.56555)
 
 [node name="Node2D" type="Node2D"]
 
@@ -33,79 +38,103 @@ script = ExtResource("3_ghoos")
 Player_Car = NodePath("../Player_Character_Car")
 
 [node name="PathFollow2D1" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1527.0848, 756.2142)
-rotation = -0.33832335
-progress = 409.88376
+position = Vector2(1184.8053, 844.4842)
+rotation = -0.22696397
+progress = 56.225483
 
 [node name="PathFollow2D2" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1518.4142, 592.83514)
-rotation = -1.4718508
-progress = 626.35187
+position = Vector2(1239.5654, 831.71045)
+rotation = -0.23142497
+progress = 112.450966
 
 [node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1547.3837, 361.772)
-rotation = -1.9736371
-progress = 869.8082
+position = Vector2(1294.262, 818.6785)
+rotation = -0.23653728
+progress = 168.67645
 
 [node name="PathFollow2D4" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(612.0151, 62.228645)
-rotation = 2.532034
-progress = 1872.8708
+position = Vector2(1348.8829, 805.3318)
+rotation = -0.2431058
+progress = 224.90193
 
 [node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(572.8086, 291.8151)
-rotation = 1.1928482
-progress = 2116.3271
+position = Vector2(1403.3975, 791.5579)
+progress = 281.1274
 
 [node name="PathFollow2D6" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(995.60095, 657.74255)
-rotation = 1.3654215
-progress = 2684.2046
+position = Vector2(1457.7356, 777.1199)
+rotation = -0.26858205
+progress = 337.3529
 
 [node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(952.3959, 806.4365)
-rotation = 2.5011125
-progress = 2846.134
+position = Vector2(1511.7058, 761.3354)
+rotation = -0.30839312
+progress = 393.5784
 
 [node name="PathFollow2D8" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(723.1761, 792.81683)
-rotation = -1.4031467
-progress = 3116.5786
+position = Vector2(1562.1182, 737.5066)
+rotation = -0.7223661
+progress = 449.80386
 
 [node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(734.55286, 662.93646)
-rotation = -2.6681697
-progress = 3275.6965
+position = Vector2(1582.7944, 687.79926)
+rotation = -1.7256843
+progress = 506.02936
 
 [node name="PathFollow2D10" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(420.92166, 753.2559)
-rotation = -1.352093
-progress = 3654.0942
+position = Vector2(1549.6462, 644.7807)
+rotation = -2.600004
+progress = 562.2548
 
 [node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(563.40717, 540.44305)
-rotation = -1.7396816
-progress = 3924.5388
+position = Vector2(1518.3076, 600.8388)
+rotation = -1.639382
+progress = 618.4803
 
 [node name="PathFollow2D12" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(297.88242, 327.4565)
-rotation = -3.0809247
-progress = 4275.948
+position = Vector2(1537.5979, 548.80786)
+rotation = -1.0995259
+progress = 674.7058
 
 [node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(217.83995, 488.60516)
-rotation = 1.6321898
-progress = 4465.4277
+position = Vector2(1561.9623, 498.09888)
+rotation = -1.2065822
+progress = 730.9313
 
 [node name="PathFollow2D14" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(341.0313, 799.2088)
-rotation = 0.6806335
-progress = 4806.1543
+position = Vector2(1564.5941, 442.21854)
+rotation = -1.6306014
+progress = 787.1568
 
 [node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(834.25494, 921.1987)
-rotation = -0.078163415
-progress = 5319.493
+position = Vector2(1555.9409, 386.7539)
+rotation = -1.8347757
+progress = 843.38226
+
+[node name="Kill" type="PathFollow2D" parent="Curva"]
+position = Vector2(1130, 857)
+rotation = -0.22072129
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Curva do Apressador" type="Path2D" parent="."]
+curve = SubResource("Curve2D_reufu")
+
+[node name="Apressador Path Follower" type="PathFollow2D" parent="Curva do Apressador"]
+position = Vector2(799.99927, 922.7547)
+rotation = -0.008800246
+scale = Vector2(0.99999994, 0.99999994)
+progress = 5285.1953
+script = ExtResource("5_pxuqu")
+
+[node name="Area2D" type="Area2D" parent="Curva do Apressador/Apressador Path Follower"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("6_46m4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Curva do Apressador/Apressador Path Follower/Area2D"]
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_ghoos")
+debug_color = Color(0.96895665, 0, 0.46760666, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -160,4 +189,5 @@ metadata/_edit_use_anchors_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(960, 540)
 
+[connection signal="body_entered" from="Curva do Apressador/Apressador Path Follower/Area2D" to="Curva do Apressador/Apressador Path Follower/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

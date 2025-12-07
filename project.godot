@@ -60,6 +60,11 @@ P_Key={
 
 2d_physics/layer_2="Death_Walls"
 
+[network]
+
+limits/packet_peer_stream/max_buffer_po2=32
+limits/debugger/max_queued_messages=8192
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

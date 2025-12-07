@@ -1,22 +1,13 @@
 extends Area2D
 
-@onready var you_lost_text: Label = $"../You Lost Text"
-
-@onready var score_text: Label = $"../You Lost Text/Score Text"
-
-@onready var curva: Path2D = $"../Curva"
-
+@onready var curva: Path2D = $"../../../Curva"
 
 func _on_body_entered(body: Node2D) -> void:
-	
 	
 	if body is Car:
 		
 		if not (body.My_Car_Mode == Car.Car_Mode.REPLAY_MODE):
 		
-			#you_lost_text.show()
-			
-			
 			curva.Distance_to_Closest_Checkpoint(body)
 			
 			#score_text.text = "Number of Checkpoints: %d" % body.Car_Checkpoints_Collected
@@ -25,9 +16,4 @@ func _on_body_entered(body: Node2D) -> void:
 			
 			body.is_Car_Crashed = true
 			
-			#body.Kill_Car()
-			
-			#JSON_Exporter.Export_Car_States(body)
-			
-			#get_tree().paused = true
-			
+			#Game_Manager.RESET_CAR.emit()
