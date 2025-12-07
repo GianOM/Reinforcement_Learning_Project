@@ -5,7 +5,7 @@ class Car_Agent_State:
 	var Car_Speed: float
 	var Car_rotation: float
 	
-	var Checkpoint_Distance: float
+	var Distance_Traveled: float
 	# Dot product entre o Front Vector e o Vetor que une o Checkpoint ao carro.
 	# A ideia é saber se o carro esta apontando pra direcao do checkpoint
 	var Chepoint_Angle: float
@@ -37,7 +37,7 @@ class Car_Agent_State:
 		
 		##Checkpoint Distance:
 		#Temp_Text += "Checkpoint Distance:" + str(Checkpoint_Distance) + "\n"
-		Temp_Text += str(Checkpoint_Distance) + ","
+		Temp_Text += str(Distance_Traveled) + ","
 		
 		##Checkpoint Angle:
 		#Temp_Text += "Chepoint Angle:" + str(Chepoint_Angle) + "\n"
@@ -86,7 +86,8 @@ func _physics_process(delta: float) -> void:
 		Car_Frame_State.Car_Speed = (player_character_car.Front_Aceleration / 0.05)
 		Car_Frame_State.Car_rotation = sin(player_character_car.rotation)
 		
-		Car_Frame_State.Checkpoint_Distance = player_character_car.Car_Distance_to_Next_Checkpoint
+		Car_Frame_State.Distance_Traveled = player_character_car.Distance_Traveled
+		
 		Car_Frame_State.Chepoint_Angle = player_character_car.Car_Direction_to_Next_Checkpoing
 		
 		if player_character_car.is_Car_Crashed:

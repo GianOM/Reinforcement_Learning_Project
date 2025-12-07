@@ -65,6 +65,11 @@ P_Key={
 limits/packet_peer_stream/max_buffer_po2=32
 limits/debugger/max_queued_messages=8192
 
+[physics]
+
+common/physics_ticks_per_second=30
+2d/physics_engine="GodotPhysics2D"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

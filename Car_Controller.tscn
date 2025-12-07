@@ -42,88 +42,78 @@ position = Vector2(1184.8053, 844.4842)
 rotation = -0.22696397
 progress = 56.225483
 
-[node name="PathFollow2D2" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1239.5654, 831.71045)
-rotation = -0.23142497
-progress = 112.450966
-
 [node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1294.262, 818.6785)
 rotation = -0.23653728
 progress = 168.67645
 
-[node name="PathFollow2D4" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1348.8829, 805.3318)
-rotation = -0.2431058
-progress = 224.90193
-
 [node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1403.3975, 791.5579)
 progress = 281.1274
-
-[node name="PathFollow2D6" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1457.7356, 777.1199)
-rotation = -0.26858205
-progress = 337.3529
 
 [node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1511.7058, 761.3354)
 rotation = -0.30839312
 progress = 393.5784
 
-[node name="PathFollow2D8" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1562.1182, 737.5066)
-rotation = -0.7223661
-progress = 449.80386
-
 [node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1582.7944, 687.79926)
 rotation = -1.7256843
 progress = 506.02936
-
-[node name="PathFollow2D10" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1549.6462, 644.7807)
-rotation = -2.600004
-progress = 562.2548
 
 [node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1518.3076, 600.8388)
 rotation = -1.639382
 progress = 618.4803
 
-[node name="PathFollow2D12" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1537.5979, 548.80786)
-rotation = -1.0995259
-progress = 674.7058
-
 [node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1561.9623, 498.09888)
 rotation = -1.2065822
 progress = 730.9313
-
-[node name="PathFollow2D14" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1564.5941, 442.21854)
-rotation = -1.6306014
-progress = 787.1568
 
 [node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1555.9409, 386.7539)
 rotation = -1.8347757
 progress = 843.38226
 
-[node name="Kill" type="PathFollow2D" parent="Curva"]
-position = Vector2(1130, 857)
-rotation = -0.22072129
-scale = Vector2(0.99999994, 0.99999994)
+[node name="PathFollow2D17" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1491.3214, 298.54388)
+rotation = -2.5631244
+progress = 955.83325
+
+[node name="PathFollow2D19" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1389.6233, 251.64557)
+rotation = -2.8261695
+progress = 1068.2842
+
+[node name="PathFollow2D21" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1063.9513, 163.10797)
+rotation = -2.87909
+progress = 1405.6371
+
+[node name="PathFollow2D22" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(792.3196, 90.65412)
+rotation = -2.8840244
+progress = 1686.7645
+
+[node name="PathFollow2D23" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(683.4346, 62.48226)
+rotation = -2.898422
+progress = 1799.2155
+
+[node name="PathFollow2D24" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(628.05054, 55.74446)
+rotation = 2.9611254
+progress = 1855.441
 
 [node name="Curva do Apressador" type="Path2D" parent="."]
 curve = SubResource("Curve2D_reufu")
 
 [node name="Apressador Path Follower" type="PathFollow2D" parent="Curva do Apressador"]
-position = Vector2(799.99927, 922.7547)
-rotation = -0.008800246
+position = Vector2(856.08136, 919.0981)
+rotation = -0.11270888
 scale = Vector2(0.99999994, 0.99999994)
-progress = 5285.1953
+progress = 5341.421
 script = ExtResource("5_pxuqu")
 
 [node name="Area2D" type="Area2D" parent="Curva do Apressador/Apressador Path Follower"]
@@ -141,7 +131,7 @@ collision_layer = 2
 script = ExtResource("3_y0ffo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(1101, 813, 1517, 707, 1465, 589, 1502, 379, 639, 101, 607, 186, 617, 275, 1014, 579, 1046, 650, 1000, 806, 983, 847, 798, 867, 727, 870, 685, 831, 670, 784, 712, 721, 710, 706, 699, 704, 620, 763, 521, 819, 399, 799, 389, 788, 372, 740, 443, 676, 512, 599, 513, 549, 500, 486, 293, 377, 271, 435, 266, 493, 267, 533, 276, 598, 313, 723, 368, 757, 376, 764, 380, 807, 519, 844, 690, 887, 833, 871, 985, 854)
+polygon = PackedVector2Array(1101, 813, 1517, 707, 1527, 695, 1467, 604, 1493, 522, 1518, 472, 1502, 379, 1461, 341, 1311, 283, 639, 101, 607, 186, 617, 275, 1014, 579, 1046, 650, 1000, 806, 983, 847, 798, 867, 727, 870, 685, 831, 670, 784, 712, 721, 710, 706, 699, 704, 620, 763, 521, 819, 399, 799, 389, 788, 372, 740, 443, 676, 512, 599, 513, 549, 500, 486, 293, 377, 271, 435, 266, 493, 267, 533, 276, 598, 313, 723, 368, 757, 376, 764, 380, 807, 519, 844, 690, 887, 833, 871, 985, 854)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 16, 20, 1042, 226, 1051, 314, 836, 187, 689, 171, 486, 180, 404, 205, 339, 293, 281, 289, 0)
@@ -150,7 +140,7 @@ polygon = PackedVector2Array(0, 16, 20, 1042, 226, 1051, 314, 836, 187, 689, 171
 polygon = PackedVector2Array(303, 281, 417, 318, 553, 440, 612, 530, 600, 602, 536, 698, 469, 752, 474, 760, 539, 739, 633, 674, 696, 608, 765, 619, 806, 681, 801, 747, 772, 793, 776, 799, 927, 765, 950, 661, 532, 311, 497, 212, 529, 95, 584, 22, 294, -2)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(314, 835, 636, 971, 843, 979, 1547, 801, 1639, 731, 1629, 644, 1566, 598, 1627, 461, 1591, 341, 1517, 202, 872, 59, 585, 22, 583, 4, 1889, 18, 1899, 1070, 850, 1035, 635, 1026, 307, 960)
+polygon = PackedVector2Array(314, 835, 636, 971, 843, 979, 1547, 801, 1639, 731, 1629, 644, 1577, 607, 1609, 514, 1611, 437, 1597, 351, 1517, 202, 872, 59, 585, 22, 583, 4, 1889, 18, 1899, 1070, 850, 1035, 635, 1026, 307, 960)
 
 [node name="You Lost Text" type="Label" parent="."]
 visible = false

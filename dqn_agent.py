@@ -68,7 +68,7 @@ class DQNConfig:
     epsilon_start: float = 1.0
     epsilon_final: float = 0.05
     #epsilon_decay: float = 5e-5  # per training step
-    epsilon_decay: float = 0.001  # per training step
+    epsilon_decay: float = 1e-4  # per training step
     device: str = "cpu"
     hidden_sizes: Sequence[int] = field(default_factory=lambda: (256, 256))
 

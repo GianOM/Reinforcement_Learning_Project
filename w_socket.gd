@@ -100,6 +100,7 @@ func Send_Message(Message_to_Send: String):
 			
 			if socket.was_string_packet():
 				
+				@warning_ignore("unused_variable")
 				var packet_text = packet.get_string_from_utf8()
 				#var Input_Vector = parse_floats(packet_text)
 				

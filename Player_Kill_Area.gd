@@ -17,7 +17,7 @@ func _on_body_entered(body: Node2D) -> void:
 			#you_lost_text.show()
 			
 			
-			curva.Distance_to_Closest_Checkpoint(body)
+			#curva.Distance_to_Closest_Checkpoint(body)
 			
 			#score_text.text = "Number of Checkpoints: %d" % body.Car_Checkpoints_Collected
 			#score_text.text += "\n Distance to Closest Checkpoint: %f" % body.Car_Distance_to_Next_Checkpoint

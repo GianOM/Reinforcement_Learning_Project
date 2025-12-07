@@ -18,9 +18,9 @@ last_distance = None
 # Reward configuration
 REWARD_DISTANCE_SCALE = 0.02
 REWARD_SPEED_SCALE = 0.001
-REWARD_CRASH = -50.0
+REWARD_CRASH = 50.0
 REWARD_FINISH = 10.0
-CHECKPOINT_REWARD = 48.0
+CHECKPOINT_REWARD = 45
 
 
 def initialize_agent():
@@ -56,7 +56,7 @@ async def handler(websocket):
                     "left": car_data["left_collision"],
                     "right": car_data["right_collision"],
                 },
-                distance_to_finish=car_data["checkpoint_distance"],
+                distance_to_finish=car_data["distance_traveled"],
 
                 #O valor abaixo é normalizado e nao em radianos
                 angle_to_finish_rad=car_data["checkpoint_angle"],
@@ -76,7 +76,7 @@ async def handler(websocket):
             # Handle training if enabled
             if TRAIN_AGENT and last_state is not None:
 
-                current_distance = car_data["checkpoint_distance"]
+                current_distance = car_data["distance_traveled"]
                 
                 # Compute reward
                 reward = compute_reward(
@@ -89,7 +89,7 @@ async def handler(websocket):
 
                     tick_Penalty=car_data.get("ticks", 0.0),
 
-                    distance_to_next_checkpoint=car_data.get("checkpoint_distance", 0.0)
+                    distance_traveled=car_data.get("distance_traveled", 0.0)
 
 
                 )
@@ -116,10 +116,12 @@ async def handler(websocket):
             # Update last state and action for next iteration
             #if not car_data.get("crashed", False) and not car_data.get("finished", False):
             if not car_data.get("crashed"):
+
                 last_state = current_state
                 last_action = action_index
+
                 if last_distance is None:
-                    last_distance = car_data["checkpoint_distance"]
+                    last_distance = car_data["distance_traveled"]
             
                 # Send action to Godot (throttle, steering)
                 message_to_godot = f"{throttle},{steering}"
@@ -163,33 +165,34 @@ def compute_reward(
     crashed: bool,
     car_speed:float,
     tick_Penalty: float,
-    distance_to_next_checkpoint: float
+    distance_traveled: float
 ) -> float:
     """Compute reward for the current state transition."""
     reward = 0.0
 
     # Numero de Checkpoints coletados
     reward += checkpoint_bonus * CHECKPOINT_REWARD
-    #reward = reward * 50.0
 
-    reward += tick_Penalty
+    #reward += tick_Penalty
     
     # Large negative reward for crashing
     if crashed:
+
         # Batidas em alta velocidade sao mais penalizadas
-        reward += REWARD_CRASH * car_speed
+        #reward += REWARD_CRASH * (1.0 + car_speed)
+        reward += REWARD_CRASH
     
     
     # "1+" evita divisao por 0
     #reward = (reward / (1+distance_to_next_checkpoint))
-    reward -= distance_to_next_checkpoint
+    reward += distance_traveled
     
     return reward
 
 def parse_car_agent_state(state_string: str) -> dict:
     """
     Receives a car agent state string in the format:
-    "speed,rotation,checkpoint_distance,checkpoint_angle,
+    "speed,rotation,distance_traveled,checkpoint_angle,
      front_ray,back_ray,left_ray,right_ray,crashed,finished,checkpoint_bonus"
     
     Returns a dictionary with each value converted to appropriate type.
@@ -201,7 +204,7 @@ def parse_car_agent_state(state_string: str) -> dict:
     data = {
         "car_speed": float(values[0]),
         "car_rotation": float(values[1]),
-        "checkpoint_distance": float(values[2]),
+        "distance_traveled": float(values[2]),
         "checkpoint_angle": float(values[3]),
         "front_collision": float(values[4]),
         "back_collision": float(values[5]),

@@ -20,7 +20,7 @@ var friction :float = 0.99           # Resistance when no input
 var Car_Checkpoints_Collected: int = 0
 
 # As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
-var Car_Distance_to_Next_Checkpoint: float = 0
+var Distance_Traveled: float = 0
 var Car_Direction_to_Next_Checkpoing: float = 0
 
 var is_Car_Crashed: bool = false
@@ -44,13 +44,16 @@ var Input_List: Array[Vector2]
 var input_forward : float
 var input_turn :float
 
+var Start_Position: Vector2
+
 
 func _ready() -> void:
 	
 	Game_Manager.Send_Inputs_to_Car.connect(Receive_AI_Inputs)
 	
 	Game_Manager.RESET_CAR.connect(Kill_Car)
-	#print(rotation)
+	
+	Start_Position = global_position
 	
 
 @warning_ignore("unused_parameter")
@@ -89,8 +92,11 @@ func _physics_process(delta: float) -> void:
 				#print(input_forward)
 				
 				position -= Front_Vector * Front_Aceleration
+				Distance_Traveled += Front_Aceleration
+				
 				Input_List.append(Vector2(input_forward, input_turn))
-				Tick_Penality -= 0.005
+				Tick_Penality -= 0.1
+				
 			
 		Car_Mode.PLAYER_CONTROLLED:
 			
@@ -104,8 +110,10 @@ func _physics_process(delta: float) -> void:
 				
 				
 				position -= Front_Vector * Front_Aceleration
+				Distance_Traveled += Front_Aceleration
+				#print(Distance_Traveled)
 				Input_List.append(Vector2(input_forward, input_turn))
-				Tick_Penality -= 0.005
+				Tick_Penality -= 0.1
 			
 		Car_Mode.REPLAY_MODE:
 			
@@ -187,7 +195,7 @@ func Kill_Car():
 		
 	Car_Checkpoints_Collected = 0
 	# As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
-	Car_Distance_to_Next_Checkpoint = 0.0
+	Distance_Traveled = 0.0
 	Car_Direction_to_Next_Checkpoing = 0.0
 		
 		
