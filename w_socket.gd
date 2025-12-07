@@ -85,9 +85,10 @@ func Send_Message(Message_to_Send: String):
 	# to send and receive data.
 	if state == WebSocketPeer.STATE_OPEN:
 		
-		var err:Error
+		#var err:Error
 		#err = socket.send_text(str(Time.get_ticks_msec()))
-		err = socket.send_text(Message_to_Send)
+		@warning_ignore("unused_variable")
+		var err:Error = socket.send_text(Message_to_Send)
 		
 		
 		while socket.get_available_packet_count():

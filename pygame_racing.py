@@ -54,7 +54,7 @@ ACTION_CONTROL_MAP = {
 MODEL_DIR = Path("Model")
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
-
+'''
 def build_track_config(track_type: str) -> Dict[str, Any]:
     """Create geometry and checkpoints for supported scenes."""
     track_lower = track_type.lower()
@@ -141,6 +141,9 @@ def build_track_config(track_type: str) -> Dict[str, Any]:
 
 
 TRACK_CONFIG = build_track_config(TRACK_TYPE)
+
+
+'''
 
 
 class Car:
@@ -396,9 +399,7 @@ def build_agent_state(car: Car, track_config: Dict[str, Any], checkpoint_progres
         speed=car.speed,
 
         #max_sensor_range=MAX_SENSOR_RANGE,
-
         #max_finish_distance=track_config["max_finish_distance"],
-
         #max_speed=car.max_speed,
     )
 

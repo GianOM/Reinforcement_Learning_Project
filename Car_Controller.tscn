@@ -12,118 +12,118 @@ _data = {
 }
 point_count = 34
 
-[node name="Node2D" type="Node2D" unique_id=446375406]
+[node name="Node2D" type="Node2D"]
 
-[node name="Player_Character_Car" parent="." unique_id=1868438444 instance=ExtResource("1_y0ffo")]
+[node name="Player_Character_Car" parent="." instance=ExtResource("1_y0ffo")]
 process_mode = 3
 position = Vector2(1101, 864)
 rotation = 1.3264502
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1451653261]
+[node name="Node2D" type="Node2D" parent="."]
 position = Vector2(896, 514)
 rotation = 4.712389
 scale = Vector2(1.5, 1.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1214285635]
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("2_reufu")
 
-[node name="Curva" type="Path2D" parent="." unique_id=1498997291 node_paths=PackedStringArray("Player_Car")]
+[node name="Curva" type="Path2D" parent="." node_paths=PackedStringArray("Player_Car")]
 curve = SubResource("Curve2D_reufu")
 script = ExtResource("3_ghoos")
 Player_Car = NodePath("../Player_Character_Car")
 
-[node name="PathFollow2D1" parent="Curva" unique_id=1118242966 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D1" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1527.0848, 756.2142)
 rotation = -0.33832335
 progress = 409.88376
 
-[node name="PathFollow2D2" parent="Curva" unique_id=1104692917 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D2" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1518.4142, 592.83514)
 rotation = -1.4718508
 progress = 626.35187
 
-[node name="PathFollow2D3" parent="Curva" unique_id=746272871 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(1547.3837, 361.772)
 rotation = -1.9736371
 progress = 869.8082
 
-[node name="PathFollow2D4" parent="Curva" unique_id=1025476297 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D4" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(612.0151, 62.228645)
 rotation = 2.532034
 progress = 1872.8708
 
-[node name="PathFollow2D5" parent="Curva" unique_id=642442666 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(572.8086, 291.8151)
 rotation = 1.1928482
 progress = 2116.3271
 
-[node name="PathFollow2D6" parent="Curva" unique_id=697046547 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D6" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(995.60095, 657.74255)
 rotation = 1.3654215
 progress = 2684.2046
 
-[node name="PathFollow2D7" parent="Curva" unique_id=293043980 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(952.3959, 806.4365)
 rotation = 2.5011125
 progress = 2846.134
 
-[node name="PathFollow2D8" parent="Curva" unique_id=1000347186 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D8" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(723.1761, 792.81683)
 rotation = -1.4031467
 progress = 3116.5786
 
-[node name="PathFollow2D9" parent="Curva" unique_id=948062780 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(734.55286, 662.93646)
 rotation = -2.6681697
 progress = 3275.6965
 
-[node name="PathFollow2D10" parent="Curva" unique_id=299804151 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D10" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(420.92166, 753.2559)
 rotation = -1.352093
 progress = 3654.0942
 
-[node name="PathFollow2D11" parent="Curva" unique_id=1659309218 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(563.40717, 540.44305)
 rotation = -1.7396816
 progress = 3924.5388
 
-[node name="PathFollow2D12" parent="Curva" unique_id=1536929268 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D12" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(297.88242, 327.4565)
 rotation = -3.0809247
 progress = 4275.948
 
-[node name="PathFollow2D13" parent="Curva" unique_id=1495389788 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(217.83995, 488.60516)
 rotation = 1.6321898
 progress = 4465.4277
 
-[node name="PathFollow2D14" parent="Curva" unique_id=1202113964 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D14" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(341.0313, 799.2088)
 rotation = 0.6806335
 progress = 4806.1543
 
-[node name="PathFollow2D15" parent="Curva" unique_id=1705192891 instance=ExtResource("3_f4sfo")]
+[node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
 position = Vector2(834.25494, 921.1987)
 rotation = -0.078163415
 progress = 5319.493
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1157828411]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 script = ExtResource("3_y0ffo")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1796107385]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(1101, 813, 1517, 707, 1465, 589, 1502, 379, 639, 101, 607, 186, 617, 275, 1014, 579, 1046, 650, 1000, 806, 983, 847, 798, 867, 727, 870, 685, 831, 670, 784, 712, 721, 710, 706, 699, 704, 620, 763, 521, 819, 399, 799, 389, 788, 372, 740, 443, 676, 512, 599, 513, 549, 500, 486, 293, 377, 271, 435, 266, 493, 267, 533, 276, 598, 313, 723, 368, 757, 376, 764, 380, 807, 519, 844, 690, 887, 833, 871, 985, 854)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D" unique_id=1358787270]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, 16, 20, 1042, 226, 1051, 314, 836, 187, 689, 171, 486, 180, 404, 205, 339, 293, 281, 289, 0)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D" unique_id=574202419]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(303, 281, 417, 318, 553, 440, 612, 530, 600, 602, 536, 698, 469, 752, 474, 760, 539, 739, 633, 674, 696, 608, 765, 619, 806, 681, 801, 747, 772, 793, 776, 799, 927, 765, 950, 661, 532, 311, 497, 212, 529, 95, 584, 22, 294, -2)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D" unique_id=1102564432]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(314, 835, 636, 971, 843, 979, 1547, 801, 1639, 731, 1629, 644, 1566, 598, 1627, 461, 1591, 341, 1517, 202, 872, 59, 585, 22, 583, 4, 1889, 18, 1899, 1070, 850, 1035, 635, 1026, 307, 960)
 
-[node name="You Lost Text" type="Label" parent="." unique_id=2100434706]
+[node name="You Lost Text" type="Label" parent="."]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,7 +139,7 @@ text = "You lost"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Score Text" type="Label" parent="You Lost Text" unique_id=184526230]
+[node name="Score Text" type="Label" parent="You Lost Text"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3862122
@@ -157,7 +157,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1910684217]
+[node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(960, 540)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
