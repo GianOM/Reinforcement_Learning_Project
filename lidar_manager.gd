@@ -19,7 +19,8 @@ class Car_Agent_State:
 	# 0 se o Carro não bateu
 	var Crashed: int = 0
 	
-	var Num_of_Checkpoints: int = 0
+	#Numero de Checkpoints dividido pelo maximo de checkpoints
+	var Normalized_Checkpoints: float = 0.0
 	
 	var Penalidade_Ticks: float = 0
 	
@@ -49,7 +50,7 @@ class Car_Agent_State:
 		
 		Temp_Text += str(Crashed) + ","
 		
-		Temp_Text += str(Num_of_Checkpoints) + ","
+		Temp_Text += str(Normalized_Checkpoints) + ","
 		
 		Temp_Text += str(Penalidade_Ticks)
 		
@@ -101,29 +102,43 @@ func _physics_process(delta: float) -> void:
 			
 			
 			
-		Car_Frame_State.Num_of_Checkpoints = player_character_car.Car_Checkpoints_Collected
+		Car_Frame_State.Normalized_Checkpoints = player_character_car.Car_Checkpoints_Collected / 14
 		
 		Car_Frame_State.Penalidade_Ticks = player_character_car.Tick_Penality
 		
-		if front_ray_cast.is_colliding():
-			
-			Car_Frame_State.Front_Collision_Ray_Distance = front_ray_cast.get_collision_point().distance_to(player_character_car.global_position)
-			front_ball.global_position = front_ray_cast.get_collision_point()
+		
 			
 		if left_side_ray_cast.is_colliding():
-			
-			Car_Frame_State.Left_Side_Collision_Ray_Distance = left_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position)
+			Car_Frame_State.Left_Side_Collision_Ray_Distance = left_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 100.0
 			left_ball.global_position = left_side_ray_cast.get_collision_point()
+		else:
+			Car_Frame_State.Left_Side_Collision_Ray_Distance = 1.0
 			
-		if back_ray_cast.is_colliding():
 			
-			Car_Frame_State.Back_Collision_Ray_Distance = back_ray_cast.get_collision_point().distance_to(player_character_car.global_position)
-			back_ball.global_position = back_ray_cast.get_collision_point()
 			
 		if right_side_ray_cast.is_colliding():
-			
-			Car_Frame_State.Right_Side_Collision_Ray_Distance = right_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position)
+			Car_Frame_State.Right_Side_Collision_Ray_Distance = right_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position)/ 100.0
 			right_ball.global_position = right_side_ray_cast.get_collision_point()
+		else:
+			Car_Frame_State.Right_Side_Collision_Ray_Distance = 1.0
+			
+			
+			
+			
+			
+			
+		if front_ray_cast.is_colliding():
+			Car_Frame_State.Front_Collision_Ray_Distance = front_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 100.0
+			front_ball.global_position = front_ray_cast.get_collision_point()
+		else:
+			Car_Frame_State.Front_Collision_Ray_Distance = 1.0
+			
+			
+		if back_ray_cast.is_colliding():
+			Car_Frame_State.Back_Collision_Ray_Distance = back_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 100.0
+			back_ball.global_position = back_ray_cast.get_collision_point()
+		else :
+			Car_Frame_State.Back_Collision_Ray_Distance = 1.0
 			
 			
 			

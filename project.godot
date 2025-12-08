@@ -62,8 +62,8 @@ P_Key={
 
 [network]
 
-limits/packet_peer_stream/max_buffer_po2=32
-limits/debugger/max_queued_messages=8192
+limits/packet_peer_stream/max_buffer_po2=64
+limits/debugger/max_queued_messages=16384
 
 [physics]
 

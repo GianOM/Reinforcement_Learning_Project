@@ -38,16 +38,16 @@ script = ExtResource("2_k0140")
 
 [node name="Front_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
 scale = Vector2(0.025, 0.15000014)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -100)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Left_Side_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
-position = Vector2(0, -0.11111104)
-rotation = -1.5707963
+position = Vector2(0, -0.22222207)
+rotation = -0.6981317
 scale = Vector2(0.02500002, 0.14999998)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -100)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -55,16 +55,16 @@ collide_with_bodies = false
 [node name="Back_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
 rotation = 3.1415927
 scale = Vector2(0.025, 0.15000013)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -100)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Right_Side_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
-position = Vector2(0, -0.11111102)
-rotation = 1.5707964
+position = Vector2(0, -0.22222212)
+rotation = 0.6981317
 scale = Vector2(0.025000019, 0.14999999)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -100)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -94,5 +94,3 @@ modulate = Color(0, 1, 1, 1)
 position = Vector2(0, -0.24074066)
 scale = Vector2(0.14814834, 0.11111081)
 mesh = SubResource("BoxMesh_k0140")
-
-[node name="AI" type="Node" parent="."]

@@ -1,11 +1,20 @@
 class_name Car
 extends CharacterBody2D 
 
+
+@warning_ignore("unused_signal")
+signal Checkpoint_Collected()# Acessado pela Checkpoint Stuff
+
+
 enum Car_Mode{
 	AI_CONTROLLED,
 	PLAYER_CONTROLLED,
 	REPLAY_MODE
 }
+
+var RNG: RandomNumberGenerator = RandomNumberGenerator.new()
+@onready var curva: Path2D = $"../Curva"
+
 
 #var My_Car_Mode: Car_Mode = Car_Mode.PLAYER_CONTROLLED
 var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
@@ -14,10 +23,10 @@ var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
 
 var acceleration :float = 0.01       # How fast the car accelerates
 var reverse_speed: float = 0.03
-var turn_speed := 0.9            # How fast the car rotates
+var turn_speed :float = 40.0            # How fast the car rotates
 var friction :float = 0.99           # Resistance when no input
 
-var Car_Checkpoints_Collected: int = 0
+var Car_Checkpoints_Collected: float = 0.0
 
 # As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
 var Distance_Traveled: float = 0
@@ -56,18 +65,18 @@ func _ready() -> void:
 	Start_Position = global_position
 	
 
-@warning_ignore("unused_parameter")
-func _input(event: InputEvent) -> void:
-	
-	if Input.is_action_just_pressed("P_Key"):
-		
-		global_position = Vector2(1101.0, 864.0)
-		rotation = 1.32626593112946
-		
-		Front_Vector = transform.y
-		Front_Aceleration = 0.0
-		
-		My_Car_Mode = Car_Mode.REPLAY_MODE
+#@warning_ignore("unused_parameter")
+#func _input(event: InputEvent) -> void:
+	#
+	#if Input.is_action_just_pressed("P_Key"):
+		#
+		#global_position = Vector2(1101.0, 864.0)
+		#rotation = 1.32626593112946
+		#
+		#Front_Vector = transform.y
+		#Front_Aceleration = 0.0
+		#
+		#My_Car_Mode = Car_Mode.REPLAY_MODE
 		
 func Receive_AI_Inputs(Forward: float, Turn: float):
 	
@@ -79,7 +88,7 @@ func Receive_AI_Inputs(Forward: float, Turn: float):
 	
 	
 func _physics_process(delta: float) -> void:
-	
+	#print(Car_Checkpoints_Collected)
 	match My_Car_Mode:
 		
 		Car_Mode.AI_CONTROLLED:
@@ -111,7 +120,9 @@ func _physics_process(delta: float) -> void:
 				
 				position -= Front_Vector * Front_Aceleration
 				Distance_Traveled += Front_Aceleration
-				#print(Distance_Traveled)
+				
+				#print(Distance_Traveled * (1+Car_Checkpoints_Collected))
+				
 				Input_List.append(Vector2(input_forward, input_turn))
 				Tick_Penality -= 0.1
 			
@@ -181,19 +192,33 @@ func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 		
 func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	
-	rotation -= Steering_Input_Amount * turn_speed * delta_Time
+	
+	if abs(Front_Aceleration) >= 0.005:
+		rotation -= Steering_Input_Amount * 0.9 * delta_Time
+	else:
+		rotation -= Steering_Input_Amount * 40 * Front_Aceleration * delta_Time
 	
 func Kill_Car():
 	
-	global_position = Vector2(1101.0, 864.0)
-	rotation = 1.32626593112946
-		
+	
+	
+	#global_position = Vector2(1101.0, 864.0)
+	#rotation = 1.32626593112946
+	
+	#var Curve_Points: PackedVector2Array = curva.curve.get_baked_points()
+	var Next_Point: int = RNG.randi_range(0, curva.curve.point_count - 1)
+	curva.Update_Goals(curva.curve.get_point_position(Next_Point))
+	
+	global_position = curva.curve.get_point_position(Next_Point)
+	rotation = curva.get_child(1).rotation + PI/2
+	
+	
 	Front_Vector = transform.y
-	Front_Aceleration = 0.0
+	Front_Aceleration = RNG.randf_range(0.0,0.048)
 	
 	is_Car_Crashed = false
 		
-	Car_Checkpoints_Collected = 0
+	Car_Checkpoints_Collected = 0.0
 	# As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
 	Distance_Traveled = 0.0
 	Car_Direction_to_Next_Checkpoing = 0.0

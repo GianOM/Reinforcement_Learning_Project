@@ -6,6 +6,7 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		#WSocket.Send_Message(str(body.lidar_manager.Car_Frame_State))
 		
-		body.Car_Checkpoints_Collected += 1
+		body.Car_Checkpoints_Collected += 1.0
+		body.Checkpoint_Collected.emit()
 	
 	

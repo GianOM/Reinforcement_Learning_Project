@@ -25,6 +25,6 @@ offset_left = -3.3775673
 offset_top = -45.99513
 offset_right = 4.78088
 offset_bottom = 44.126453
-color = Color(1, 0.13725491, 1, 1)
+color = Color(0.2, 0.061666667, 0.034000006, 1)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -2,17 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
 [ext_resource type="Texture2D" uid="uid://cari14xlmlp1b" path="res://2014_Interlagos_circuit_map.svg.png" id="2_reufu"]
+[ext_resource type="Curve2D" uid="uid://dwddijlv3vuo0" path="res://Curva Interlagos.tres" id="3_46m4f"]
 [ext_resource type="PackedScene" uid="uid://3aggd8ekblx0" path="res://Checkpoint.tscn" id="3_f4sfo"]
 [ext_resource type="Script" uid="uid://dxrsg3w62efpk" path="res://Script_Curve_Manager.gd" id="3_ghoos"]
 [ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
 [ext_resource type="Script" uid="uid://c3d3wtj0ep5jt" path="res://kill.gd" id="5_pxuqu"]
 [ext_resource type="Script" uid="uid://cn8jc1gabbk4y" path="res://Apressador.gd" id="6_46m4f"]
-
-[sub_resource type="Curve2D" id="Curve2D_reufu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1130, 857, -43.10527, 25.657902, 43.10527, -25.657902, 1549, 747, 47.07483, 27.99044, -47.07483, -27.99044, 1550, 645, 0, 0, 0, 0, 1522, 579, -2.8223693, 11.289477, 2.8223693, -11.289477, 1563, 495, 59.83423, 50.238174, -59.83423, -50.238174, 1515, 316, 0, 0, 0, 0, 1360, 243, 46.184223, 8.723686, -46.184223, -8.723686, 660, 57, 12.828951, -23.092112, -12.828951, 23.092112, 591, 90, 0, 0, 0, 0, 557, 240, -27.064604, -29.570587, 27.064604, 29.570587, 598, 336, -31.518402, -26.848907, 31.518402, 26.848907, 973, 615, 0, 0, 0, 0, 998, 701, 54.708588, -28.838634, -54.708588, 28.838634, 942, 813, 32.231415, 9.754244, -32.231415, -9.754244, 751, 841, -1.2722927, 13.99522, 1.2722927, -13.99522, 723, 794, -15.69161, 24.173561, 15.69161, -24.173561, 764, 736, 21.628977, 18.660294, -21.628977, -18.660294, 745, 670, 15.267512, -11.450634, -15.267512, 11.450634, 680, 667, 53.436295, -27.566341, -53.436295, 27.566341, 571, 757, 22.053074, -1.2722927, -22.053074, 1.2722927, 450, 789, 0, 0, 0, 0, 422, 768, -11.026537, 11.450634, 11.026537, -11.450634, 427, 742, -11.968034, 62.253284, 11.968034, -62.253284, 562, 594, 18.891617, 25.44585, -18.891617, -25.44585, 531, 474, 30.789482, 17.960531, -30.789482, -17.960531, 320, 335, 5.644738, -9.750003, -5.644738, 9.750003, 268, 345, 5.1315804, -36.947376, -5.1315804, 36.947376, 219, 477, -9.750003, -32.842113, 9.750003, 32.842113, 233, 579, -29.250008, -47.723698, 29.250008, 47.723698, 299, 749, -96.47371, -27.197374, 96.47371, 27.197374, 455, 850, -100.51112, -17.388, 100.51112, 17.388, 747, 919, 0, 0, 0, 0, 1009, 888, 0, 0, 0, 0, 1130, 857)
-}
-point_count = 34
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghoos"]
 size = Vector2(20, 135.56555)
@@ -33,114 +28,116 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_reufu")
 
 [node name="Curva" type="Path2D" parent="." node_paths=PackedStringArray("Player_Car")]
-curve = SubResource("Curve2D_reufu")
+curve = ExtResource("3_46m4f")
 script = ExtResource("3_ghoos")
 Player_Car = NodePath("../Player_Character_Car")
 
-[node name="PathFollow2D1" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1184.8053, 844.4842)
-rotation = -0.22696397
-progress = 56.225483
-
-[node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1294.262, 818.6785)
-rotation = -0.23653728
-progress = 168.67645
-
-[node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1403.3975, 791.5579)
-progress = 281.1274
-
-[node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1511.7058, 761.3354)
-rotation = -0.30839312
-progress = 393.5784
-
-[node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1582.7944, 687.79926)
-rotation = -1.7256843
-progress = 506.02936
-
-[node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1518.3076, 600.8388)
-rotation = -1.639382
-progress = 618.4803
-
-[node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1561.9623, 498.09888)
-rotation = -1.2065822
-progress = 730.9313
-
-[node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1555.9409, 386.7539)
-rotation = -1.8347757
-progress = 843.38226
-
-[node name="PathFollow2D17" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1491.3214, 298.54388)
-rotation = -2.5631244
-progress = 955.83325
-
-[node name="PathFollow2D19" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1389.6233, 251.64557)
-rotation = -2.8261695
-progress = 1068.2842
-
-[node name="PathFollow2D21" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1063.9513, 163.10797)
-rotation = -2.87909
-progress = 1405.6371
-
-[node name="PathFollow2D22" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(792.3196, 90.65412)
-rotation = -2.8840244
-progress = 1686.7645
-
-[node name="PathFollow2D23" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(683.4346, 62.48226)
-rotation = -2.898422
-progress = 1799.2155
-
-[node name="PathFollow2D24" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(628.05054, 55.74446)
-rotation = 2.9611254
-progress = 1855.441
-
-[node name="Curva do Apressador" type="Path2D" parent="."]
-curve = SubResource("Curve2D_reufu")
-
-[node name="Apressador Path Follower" type="PathFollow2D" parent="Curva do Apressador"]
-position = Vector2(856.08136, 919.0981)
-rotation = -0.11270888
+[node name="Apressador Path Follower" type="PathFollow2D" parent="Curva"]
+position = Vector2(841.46277, 935.7564)
+rotation = -0.13799033
 scale = Vector2(0.99999994, 0.99999994)
 progress = 5341.421
 script = ExtResource("5_pxuqu")
 
-[node name="Area2D" type="Area2D" parent="Curva do Apressador/Apressador Path Follower"]
-collision_layer = 3
-collision_mask = 3
+[node name="Area2D" type="Area2D" parent="Curva/Apressador Path Follower"]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("6_46m4f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Curva do Apressador/Apressador Path Follower/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Curva/Apressador Path Follower/Area2D"]
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ghoos")
 debug_color = Color(0.96895665, 0, 0.46760666, 0.41960785)
+
+[node name="PathFollow2D1" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1210.2251, 852.1673)
+rotation = -0.26937565
+progress = 56.225483
+
+[node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1318.4915, 821.75055)
+rotation = -0.27889252
+progress = 168.67645
+
+[node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1426.3673, 789.99866)
+rotation = -0.29596013
+progress = 281.1274
+
+[node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1533.034, 754.42)
+rotation = -0.3844297
+progress = 393.5784
+
+[node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1574.5157, 667.2044)
+rotation = -2.1642323
+progress = 506.02936
+
+[node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1522.0493, 578.9003)
+rotation = -1.1050283
+progress = 618.4803
+
+[node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1564.8733, 476.089)
+rotation = -1.5246482
+progress = 730.9313
+
+[node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1548.9237, 365.5115)
+rotation = -1.9496964
+progress = 843.38226
+
+[node name="PathFollow2D17" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1472.1532, 286.99606)
+rotation = -2.6331618
+progress = 955.83325
+
+[node name="PathFollow2D19" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1368.0046, 245.10558)
+rotation = -2.8716936
+progress = 1068.2842
+
+[node name="PathFollow2D21" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1042.3352, 157.30194)
+rotation = -2.8792875
+progress = 1405.6371
+
+[node name="PathFollow2D22" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(770.67285, 84.96338)
+rotation = -2.8850594
+progress = 1686.7645
+
+[node name="PathFollow2D23" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(661.6772, 57.33218)
+rotation = -2.9391532
+progress = 1799.2155
+
+[node name="PathFollow2D24" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(586.0607, 102.435326)
+rotation = 1.8829273
+progress = 1899.0631
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 script = ExtResource("3_y0ffo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(1101, 813, 1517, 707, 1527, 695, 1467, 604, 1493, 522, 1518, 472, 1502, 379, 1461, 341, 1311, 283, 639, 101, 607, 186, 617, 275, 1014, 579, 1046, 650, 1000, 806, 983, 847, 798, 867, 727, 870, 685, 831, 670, 784, 712, 721, 710, 706, 699, 704, 620, 763, 521, 819, 399, 799, 389, 788, 372, 740, 443, 676, 512, 599, 513, 549, 500, 486, 293, 377, 271, 435, 266, 493, 267, 533, 276, 598, 313, 723, 368, 757, 376, 764, 380, 807, 519, 844, 690, 887, 833, 871, 985, 854)
+build_mode = 1
+polygon = PackedVector2Array(1101, 813, 1517, 707, 1527, 695, 1467, 604, 1493, 522, 1518, 472, 1502, 379, 1461, 341, 1311, 283, 639, 101, 620, 166, 606, 237, 617, 275, 641, 307, 981, 557, 1050, 657, 1036, 772, 1009, 823, 952, 864, 851, 890, 744, 889, 692, 862, 673, 831, 671, 796, 718, 716, 715, 708, 708, 705, 680, 734, 633, 777, 573, 812, 505, 834, 469, 837, 414, 829, 394, 809, 372, 770, 372, 740, 402, 694, 505, 590, 513, 549, 494, 494, 308, 376, 294, 412, 266, 493, 267, 533, 292, 606, 325, 689, 348, 769, 359, 784, 380, 807, 411, 833, 468, 844, 499, 853, 742, 901, 852, 896, 953, 869)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, 16, 20, 1042, 226, 1051, 314, 836, 187, 689, 171, 486, 180, 404, 205, 339, 293, 281, 289, 0)
+build_mode = 1
+polygon = PackedVector2Array(0, 16, 20, 1042, 226, 1051, 302, 860, 233, 722, 194, 637, 171, 486, 180, 404, 239, 303, 293, 281, 289, 0)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(303, 281, 417, 318, 553, 440, 612, 530, 600, 602, 536, 698, 469, 752, 474, 760, 539, 739, 633, 674, 696, 608, 765, 619, 806, 681, 801, 747, 772, 793, 776, 799, 927, 765, 950, 661, 532, 311, 497, 212, 529, 95, 584, 22, 294, -2)
+build_mode = 1
+polygon = PackedVector2Array(303, 281, 422, 338, 589, 467, 612, 530, 605, 619, 560, 685, 535, 702, 456, 742, 484, 739, 511, 731, 576, 699, 616, 664, 679, 612, 765, 619, 810, 677, 815, 741, 789, 782, 772, 793, 776, 799, 838, 794, 912, 775, 943, 737, 951, 673, 925, 637, 575, 380, 510, 247, 520, 147, 529, 95, 584, 22, 294, -2)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(314, 835, 636, 971, 843, 979, 1547, 801, 1639, 731, 1629, 644, 1577, 607, 1609, 514, 1611, 437, 1597, 351, 1517, 202, 872, 59, 585, 22, 583, 4, 1889, 18, 1899, 1070, 850, 1035, 635, 1026, 307, 960)
+build_mode = 1
+polygon = PackedVector2Array(305, 862, 362, 915, 457, 947, 610, 977, 769, 991, 843, 979, 1003, 956, 1547, 801, 1639, 731, 1629, 644, 1577, 607, 1609, 514, 1611, 437, 1597, 351, 1517, 258, 1405, 201, 804, 43, 695, 15, 617, 10, 585, 22, 583, 4, 1889, 18, 1899, 1070, 850, 1035, 635, 1026, 307, 960)
 
 [node name="You Lost Text" type="Label" parent="."]
 visible = false
@@ -177,7 +174,8 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(960, 540)
+offset = Vector2(960, 500)
+zoom = Vector2(1.1, 1.1)
 
-[connection signal="body_entered" from="Curva do Apressador/Apressador Path Follower/Area2D" to="Curva do Apressador/Apressador Path Follower/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Curva/Apressador Path Follower/Area2D" to="Curva/Apressador Path Follower/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

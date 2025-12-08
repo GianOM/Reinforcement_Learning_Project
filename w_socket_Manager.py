@@ -18,9 +18,9 @@ last_distance = None
 # Reward configuration
 REWARD_DISTANCE_SCALE = 0.02
 REWARD_SPEED_SCALE = 0.001
-REWARD_CRASH = 50.0
+REWARD_CRASH = 5.0
 REWARD_FINISH = 10.0
-CHECKPOINT_REWARD = 45
+CHECKPOINT_REWARD = 48
 
 
 def initialize_agent():
@@ -151,11 +151,11 @@ def action_to_godot_control(action_index: int) -> tuple[float, float]:
     """
     action_map = {
         #Talvez adicionar a possibilidade de dar RE
-        0: (0.0, 0.0),   # idle
-        1: (1.0, 0.0),   # throttle
-        2: (0.0, 1.0),   # steer left
-        3: (0.0, -1.0),  # steer right
-        #4: (-1.0, 0.0),   # reverse
+        #0: (0.0, 0.0),   # idle
+        0: (1.0, 0.0),   # throttle
+        1: (0.0, 1.0),   # steer left
+        2: (0.0, -1.0),  # steer right
+        3: (-1.0, 0.0),   # reverse
     }
     return action_map.get(action_index, (0.0, 0.0))
 
@@ -171,21 +171,14 @@ def compute_reward(
     reward = 0.0
 
     # Numero de Checkpoints coletados
-    reward += checkpoint_bonus * CHECKPOINT_REWARD
-
-    #reward += tick_Penalty
+    reward += distance_traveled * ((1 + checkpoint_bonus))
     
     # Large negative reward for crashing
     if crashed:
 
-        # Batidas em alta velocidade sao mais penalizadas
+        # Batidas em alta velocidade sao MENOS penalizadas
         #reward += REWARD_CRASH * (1.0 + car_speed)
-        reward += REWARD_CRASH
-    
-    
-    # "1+" evita divisao por 0
-    #reward = (reward / (1+distance_to_next_checkpoint))
-    reward += distance_traveled
+        reward = reward / REWARD_CRASH
     
     return reward
 
@@ -220,7 +213,8 @@ def parse_car_agent_state(state_string: str) -> dict:
 
     if len(values) > 9:
 
-        data["checkpoint_bonus"] = int(values[9]) # Quantidade de Check Points que a IA Coletou
+        # Quantidade de Check Points que a IA Coletou Normalizada
+        data["checkpoint_bonus"] = float(values[9]) 
 
     if len(values) > 10:
        data["ticks"] = float(values[10])

@@ -14,20 +14,8 @@ func _on_body_entered(body: Node2D) -> void:
 		
 		if not (body.My_Car_Mode == Car.Car_Mode.REPLAY_MODE):
 		
-			#you_lost_text.show()
-			
-			
-			#curva.Distance_to_Closest_Checkpoint(body)
-			
-			#score_text.text = "Number of Checkpoints: %d" % body.Car_Checkpoints_Collected
-			#score_text.text += "\n Distance to Closest Checkpoint: %f" % body.Car_Distance_to_Next_Checkpoint
-			#score_text.text += "\n Number of Ticks: %f" % body.Tick_Penality
+
 			
 			body.is_Car_Crashed = true
 			
-			#body.Kill_Car()
-			
-			#JSON_Exporter.Export_Car_States(body)
-			
-			#get_tree().paused = true
-			
+			#Game_Manager.RESET_CAR.emit()

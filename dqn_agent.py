@@ -31,11 +31,11 @@ from torch.optim import Adam
 NUM_RAY_FEATURES = 4
 STATE_SIZE = 8  # rays + distance + angle + heading + speed
 ACTION_MEANINGS: Tuple[str, ...] = (
-    "idle",              # No throttle or steering
+    #"idle",              # No throttle or steering
     "throttle",          # Accelerate straight
     "steer_left",        # Steer left without throttle
     "steer_right",       # Steer right without throttle
-    #"reverse",     # Accelerate while steering left
+    "reverse",     # Break or Reverse
 )
 
 
@@ -61,16 +61,20 @@ class QNetwork(nn.Module):
 @dataclass
 class DQNConfig:
     gamma: float = 0.99
-    lr: float = 3e-4
-    batch_size: int = 128
+    #lr: float = 3e-4 #learning rate
+    lr: float = 1e-3
+    #batch_size: int = 128
+    batch_size: int = 256
     buffer_size: int = 100_000
-    tau: float = 5e-3
+    #tau: float = 5e-3
+    tau: float = 1e-2
     epsilon_start: float = 1.0
     epsilon_final: float = 0.05
     #epsilon_decay: float = 5e-5  # per training step
-    epsilon_decay: float = 1e-4  # per training step
+    epsilon_decay: float = 1e-3  # per training step
     device: str = "cpu"
-    hidden_sizes: Sequence[int] = field(default_factory=lambda: (256, 256))
+    #hidden_sizes: Sequence[int] = field(default_factory=lambda: (256, 256))
+    hidden_sizes: Sequence[int] = field(default_factory=lambda: (128, 128))
 
 
 class ReplayBuffer:
@@ -144,7 +148,9 @@ class DQNAgent:
         self.memory.push(state, action, reward, next_state, done)
     # TODO: Otimizar
     def train_step(self) -> None:
+
         if len(self.memory) < self.config.batch_size:
+
             return
 
         states, actions, rewards, next_states, dones = self.memory.sample(self.config.batch_size, self.device)
@@ -217,20 +223,10 @@ def build_state_vector(
         max_speed: Maximum achievable speed used to scale the feature.
     """
 
-    def clamp_norm(value: float, max_value: float) -> float:
-        return max(0.0, min(1.0, value / max_value if max_value > 0 else 0.0))
-
     #front = clamp_norm(ray_distances.get("front", 0.0), max_sensor_range)
     front = ray_distances.get("front", 0.0)
-
-    #rear = clamp_norm(ray_distances.get("rear", 0.0), max_sensor_range)
     rear = ray_distances.get("rear", 0.0)
-
-    #left = clamp_norm(ray_distances.get("left", 0.0), max_sensor_range)
     left = ray_distances.get("left", 0.0)
-
-
-    #right = clamp_norm(ray_distances.get("right", 0.0), max_sensor_range)
     right = ray_distances.get("right", 0.0)
 
     #distance = clamp_norm(distance_to_finish, max_finish_distance)
