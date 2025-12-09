@@ -7,7 +7,7 @@ extends PathFollow2D
 
 func Reset_Progress(New_Progress_Ration:float):
 	progress = New_Progress_Ration
-	progress_ratio -= 0.06
+	progress_ratio -= 0.05
 	
 func _physics_process(delta: float) -> void:
-	progress_ratio += 0.008 * delta
+	progress_ratio += 0.007 * delta

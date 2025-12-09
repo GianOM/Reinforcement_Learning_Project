@@ -15,9 +15,9 @@ enum Car_Mode{
 var RNG: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var curva: Path2D = $"../Curva"
 
-
+@export var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
 #var My_Car_Mode: Car_Mode = Car_Mode.PLAYER_CONTROLLED
-var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
+#var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
 
 @onready var lidar_manager: Node2D = $Lidar_Manager
 
@@ -43,41 +43,19 @@ var Tick_Penality: float = 0.0
 var Front_Vector : Vector2 = Vector2.ZERO
 var Front_Aceleration: float = 0.0
 
-
-var Input_Replay_Iterator: int = 0
-var Input_List: Array[Vector2]
-
-
-
+var Replay_Buffer: Array[Vector3]
 
 var input_forward : float
 var input_turn :float
 
-var Start_Position: Vector2
-
+var Curve_Points: PackedVector2Array
 
 func _ready() -> void:
 	
 	Game_Manager.Send_Inputs_to_Car.connect(Receive_AI_Inputs)
-	
 	Game_Manager.RESET_CAR.connect(Kill_Car)
+	Curve_Points = curva.curve.get_baked_points()
 	
-	Start_Position = global_position
-	
-
-#@warning_ignore("unused_parameter")
-#func _input(event: InputEvent) -> void:
-	#
-	#if Input.is_action_just_pressed("P_Key"):
-		#
-		#global_position = Vector2(1101.0, 864.0)
-		#rotation = 1.32626593112946
-		#
-		#Front_Vector = transform.y
-		#Front_Aceleration = 0.0
-		#
-		#My_Car_Mode = Car_Mode.REPLAY_MODE
-		
 func Receive_AI_Inputs(Forward: float, Turn: float):
 	
 	
@@ -88,7 +66,7 @@ func Receive_AI_Inputs(Forward: float, Turn: float):
 	
 	
 func _physics_process(delta: float) -> void:
-	#print(Car_Checkpoints_Collected)
+	
 	match My_Car_Mode:
 		
 		Car_Mode.AI_CONTROLLED:
@@ -98,12 +76,10 @@ func _physics_process(delta: float) -> void:
 				handle_steering(input_turn, delta)
 				handle_acceleration(input_forward, delta)
 				
-				#print(input_forward)
-				
 				position -= Front_Vector * Front_Aceleration
 				Distance_Traveled += Front_Aceleration
 				
-				Input_List.append(Vector2(input_forward, input_turn))
+				#print(Distance_Traveled)
 				Tick_Penality -= 0.1
 				
 			
@@ -121,22 +97,19 @@ func _physics_process(delta: float) -> void:
 				position -= Front_Vector * Front_Aceleration
 				Distance_Traveled += Front_Aceleration
 				
-				#print(Distance_Traveled * (1+Car_Checkpoints_Collected))
-				
-				Input_List.append(Vector2(input_forward, input_turn))
 				Tick_Penality -= 0.1
 			
-		Car_Mode.REPLAY_MODE:
-			
-			if Input_Replay_Iterator < Input_List.size():
-			
-				handle_steering(Input_List[Input_Replay_Iterator].y, delta)
-				handle_acceleration(Input_List[Input_Replay_Iterator].x, delta)
-				
-				
-				position -= Front_Vector * Front_Aceleration
-				
-				Input_Replay_Iterator += 1
+		#Car_Mode.REPLAY_MODE:
+			#
+			#if Input_Replay_Iterator < Replay_Buffer.size():
+			#
+				#handle_steering(Input_List[Input_Replay_Iterator].y, delta)
+				#handle_acceleration(Input_List[Input_Replay_Iterator].x, delta)
+				#
+				#
+				#position -= Front_Vector * Front_Aceleration
+				#
+				#Input_Replay_Iterator += 1
 		
 		
 	#green_arrow.look_at(position + velocity)
@@ -200,21 +173,20 @@ func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	
 func Kill_Car():
 	
+	var Next_Point: int = RNG.randi_range(0, Curve_Points.size() - 1)
+	var Next_Baked_Point: Vector2 = Curve_Points[Next_Point]
 	
+	curva.Update_Goals(Next_Baked_Point)
 	
-	#global_position = Vector2(1101.0, 864.0)
-	#rotation = 1.32626593112946
+	# Adiciona um offset lateral para impedir que o carro sempre renasça no centro da pista
+	global_position = Next_Baked_Point + (transform.x * RNG.randf_range(-0.05,0.05))
 	
-	#var Curve_Points: PackedVector2Array = curva.curve.get_baked_points()
-	var Next_Point: int = RNG.randi_range(0, curva.curve.point_count - 1)
-	curva.Update_Goals(curva.curve.get_point_position(Next_Point))
-	
-	global_position = curva.curve.get_point_position(Next_Point)
-	rotation = curva.get_child(1).rotation + PI/2
+	#Incluimos uma rotacao aleatoria de +-45º para uma melhor generalizacao
+	rotation = (curva.get_child(1).rotation + PI/2) + RNG.randf_range(-PI/4,PI/4)
 	
 	
 	Front_Vector = transform.y
-	Front_Aceleration = RNG.randf_range(0.0,0.048)
+	Front_Aceleration = RNG.randf_range(0.0,0.03)
 	
 	is_Car_Crashed = false
 		

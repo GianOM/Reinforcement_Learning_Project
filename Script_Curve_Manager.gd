@@ -79,14 +79,14 @@ func Update_Goals(New_Position: Vector2):
 		Progress_Offset = curve.get_closest_offset(New_Position)
 		
 		Temp_Path_Follow.progress = Progress_Offset
-		Temp_Path_Follow.progress_ratio += 0.005 * (i*i)
+		Temp_Path_Follow.progress_ratio += 0.02 * i
 		
 		
 func Car_Checkpoint_Collected():
 	
 	Current_Checkpoint += 1
 	
-	if Current_Checkpoint > 14:
+	if Current_Checkpoint > 49:
 		
 		Current_Checkpoint = 1
 		

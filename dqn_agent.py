@@ -62,19 +62,18 @@ class QNetwork(nn.Module):
 class DQNConfig:
     gamma: float = 0.99
     #lr: float = 3e-4 #learning rate
-    lr: float = 1e-3
+    lr: float = 2e-4
     #batch_size: int = 128
     batch_size: int = 256
     buffer_size: int = 100_000
     #tau: float = 5e-3
-    tau: float = 1e-2
+    tau: float = 8e-3
     epsilon_start: float = 1.0
     epsilon_final: float = 0.05
     #epsilon_decay: float = 5e-5  # per training step
-    epsilon_decay: float = 1e-3  # per training step
+    epsilon_decay: float = 8e-5  # per training step
     device: str = "cpu"
-    #hidden_sizes: Sequence[int] = field(default_factory=lambda: (256, 256))
-    hidden_sizes: Sequence[int] = field(default_factory=lambda: (128, 128))
+    hidden_sizes: Sequence[int] = field(default_factory=lambda: (256, 256))
 
 
 class ReplayBuffer:

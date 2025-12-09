@@ -255,8 +255,8 @@ async def send_message(message: str):
 
 async def start_server(host="0.0.0.0", port=8080):
     """Starts the WebSocket server and keeps it running."""
-    initialize_agent()
-    #load_agent_model("final_model.pth")
+    #initialize_agent()
+    load_agent_model("final_model.pth")
     async with websockets.serve(handler, host, port):
         print(f"Python WebSocket server running on {host}:{port}")
         print(f"Training mode: {'ENABLED' if TRAIN_AGENT else 'DISABLED'}")

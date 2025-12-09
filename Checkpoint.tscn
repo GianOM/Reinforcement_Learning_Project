@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://chfhsowts6qto" path="res://checkpoint.gd" id="1_yt2a0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0ffo"]
-size = Vector2(11.682022, 95.40724)
+size = Vector2(10.438129, 68.95528)
 
 [node name="PathFollow2D" type="PathFollow2D"]
-rotation = -0.25254273
 script = ExtResource("1_yt2a0")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -22,9 +21,9 @@ shape = SubResource("RectangleShape2D_y0ffo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -3.3775673
-offset_top = -45.99513
+offset_top = -35.0
 offset_right = 4.78088
-offset_bottom = 44.126453
+offset_bottom = 33.131317
 color = Color(0.2, 0.061666667, 0.034000006, 1)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

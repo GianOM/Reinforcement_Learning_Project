@@ -7,8 +7,9 @@
 radius = 0.1
 height = 0.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_reufu"]
-size = Vector2(0.21561432, 0.4940548)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k0140"]
+radius = 0.09348597
+height = 0.49854672
 
 [sub_resource type="SphereMesh" id="SphereMesh_k0140"]
 radius = 0.1
@@ -18,10 +19,12 @@ height = 0.2
 
 [node name="Player_Character_Car" type="CharacterBody2D"]
 z_index = 2
-scale = Vector2(54.000034, 54.00003)
+scale = Vector2(55, 55)
 script = ExtResource("1_6ek1b")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
 position = Vector2(-0.0025768722, -0.10381862)
 mesh = SubResource("CapsuleMesh_reufu")
 metadata/_edit_lock_ = true
@@ -29,7 +32,8 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.0025768746, -0.10381863)
 scale = Vector2(1, 0.9999994)
-shape = SubResource("RectangleShape2D_reufu")
+shape = SubResource("CapsuleShape2D_k0140")
+debug_color = Color(1, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Lidar_Manager" type="Node2D" parent="."]
@@ -70,27 +74,28 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="Front_Ball" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0.16078432, 0, 1)
+modulate = Color(0.85490197, 0.003921569, 0.1254902, 1)
 position = Vector2(0, -0.9259254)
 mesh = SubResource("SphereMesh_k0140")
 
 [node name="Left_Ball" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0.16078432, 0, 1)
+modulate = Color(0, 0.63107926, 0.86664796, 1)
 position = Vector2(-0.6296292, -0.111111045)
 mesh = SubResource("SphereMesh_k0140")
 
 [node name="Back_Ball" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0.16078432, 0, 1)
+modulate = Color(0, 0.71, 0.14200003, 1)
 position = Vector2(3.7252903e-09, 0.4814812)
 mesh = SubResource("SphereMesh_k0140")
 
 [node name="Right_Ball" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0.16078432, 0, 1)
+modulate = Color(0, 0.6313726, 0.8666667, 1)
 position = Vector2(0.53703666, -0.111111045)
 mesh = SubResource("SphereMesh_k0140")
 
 [node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
 modulate = Color(0, 1, 1, 1)
-position = Vector2(0, -0.24074066)
-scale = Vector2(0.14814834, 0.11111081)
+z_index = 2
+position = Vector2(0.017508373, -0.24074066)
+scale = Vector2(0.18316509, 0.11111081)
 mesh = SubResource("BoxMesh_k0140")

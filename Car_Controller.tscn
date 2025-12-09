@@ -1,23 +1,26 @@
 [gd_scene load_steps=10 format=3 uid="uid://4wttcr2gdd5m"]
 
 [ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
-[ext_resource type="Texture2D" uid="uid://cari14xlmlp1b" path="res://2014_Interlagos_circuit_map.svg.png" id="2_reufu"]
-[ext_resource type="Curve2D" uid="uid://dwddijlv3vuo0" path="res://Curva Interlagos.tres" id="3_46m4f"]
+[ext_resource type="Texture2D" uid="uid://ccdd2qrqqrkyg" path="res://Pista Nelson Piquet.png" id="2_pxuqu"]
 [ext_resource type="PackedScene" uid="uid://3aggd8ekblx0" path="res://Checkpoint.tscn" id="3_f4sfo"]
 [ext_resource type="Script" uid="uid://dxrsg3w62efpk" path="res://Script_Curve_Manager.gd" id="3_ghoos"]
+[ext_resource type="Curve2D" uid="uid://wl2j5isrpgtj" path="res://Curva Nelson Piquet.tres" id="3_pxuqu"]
 [ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
 [ext_resource type="Script" uid="uid://c3d3wtj0ep5jt" path="res://kill.gd" id="5_pxuqu"]
-[ext_resource type="Script" uid="uid://cn8jc1gabbk4y" path="res://Apressador.gd" id="6_46m4f"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_pxuqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghoos"]
-size = Vector2(20, 135.56555)
+size = Vector2(15.086182, 67.17328)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player_Character_Car" parent="." instance=ExtResource("1_y0ffo")]
 process_mode = 3
-position = Vector2(1101, 864)
-rotation = 1.3264502
+z_index = 8
+position = Vector2(828, 169)
+rotation = 1.2217305
+My_Car_Mode = 1
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(896, 514)
@@ -25,119 +28,302 @@ rotation = 4.712389
 scale = Vector2(1.5, 1.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("2_reufu")
+position = Vector2(-13.264933, 34.303047)
+rotation = 1.5707964
+scale = Vector2(0.6566138, 0.65537024)
+texture = ExtResource("2_pxuqu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+texture = SubResource("ImageTexture_pxuqu")
 
 [node name="Curva" type="Path2D" parent="." node_paths=PackedStringArray("Player_Car")]
-curve = ExtResource("3_46m4f")
+z_index = 4
+curve = ExtResource("3_pxuqu")
 script = ExtResource("3_ghoos")
 Player_Car = NodePath("../Player_Character_Car")
 
 [node name="Apressador Path Follower" type="PathFollow2D" parent="Curva"]
-position = Vector2(841.46277, 935.7564)
-rotation = -0.13799033
+position = Vector2(595.99426, 254.14888)
+rotation = -0.35511774
 scale = Vector2(0.99999994, 0.99999994)
-progress = 5341.421
+progress = 5446.6987
 script = ExtResource("5_pxuqu")
 
 [node name="Area2D" type="Area2D" parent="Curva/Apressador Path Follower"]
 collision_layer = 7
 collision_mask = 7
-script = ExtResource("6_46m4f")
+script = ExtResource("3_y0ffo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Curva/Apressador Path Follower/Area2D"]
 scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_ghoos")
-debug_color = Color(0.96895665, 0, 0.46760666, 0.41960785)
+debug_color = Color(0.96862745, 0, 0, 1)
 
 [node name="PathFollow2D1" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1210.2251, 852.1673)
-rotation = -0.26937565
-progress = 56.225483
+position = Vector2(972.3134, 114.233284)
+rotation = -0.35669634
+progress = 114.79935
+
+[node name="PathFollow2D2" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1080.2615, 75.15681)
+rotation = -0.3341469
+progress = 229.5987
 
 [node name="PathFollow2D3" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1318.4915, 821.75055)
-rotation = -0.27889252
-progress = 168.67645
+position = Vector2(1190.7954, 46.976467)
+rotation = 0.02738746
+progress = 344.39804
+
+[node name="PathFollow2D4" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1266.774, 123.00796)
+rotation = 1.3618214
+progress = 459.1974
 
 [node name="PathFollow2D5" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1426.3673, 789.99866)
-rotation = -0.29596013
-progress = 281.1274
+position = Vector2(1277.6293, 237.26634)
+rotation = 1.4943857
+progress = 573.99677
+
+[node name="PathFollow2D6" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1285.2413, 351.80267)
+rotation = 1.4986192
+progress = 688.7961
 
 [node name="PathFollow2D7" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1533.034, 754.42)
-rotation = -0.3844297
-progress = 393.5784
+position = Vector2(1293.715, 466.29355)
+rotation = 1.4958043
+progress = 803.5954
+
+[node name="PathFollow2D8" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1302.387, 580.767)
+rotation = 1.4946771
+progress = 918.3948
 
 [node name="PathFollow2D9" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1574.5157, 667.2044)
-rotation = -2.1642323
-progress = 506.02936
+position = Vector2(1311.1626, 695.24084)
+rotation = 1.4939097
+progress = 1033.1941
+
+[node name="PathFollow2D10" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1319.8486, 809.6984)
+rotation = 1.4978971
+progress = 1147.9935
 
 [node name="PathFollow2D11" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1522.0493, 578.9003)
-rotation = -1.1050283
-progress = 618.4803
+position = Vector2(1326.6984, 924.27234)
+rotation = 1.6129233
+progress = 1262.7928
+
+[node name="PathFollow2D12" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1256.0537, 1000.1637)
+rotation = -3.0928998
+progress = 1377.5922
 
 [node name="PathFollow2D13" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1564.8733, 476.089)
-rotation = -1.5246482
-progress = 730.9313
+position = Vector2(1153.3134, 952.0112)
+rotation = -2.6199565
+progress = 1492.3915
+
+[node name="PathFollow2D14" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1053.0397, 896.0951)
+rotation = -2.647407
+progress = 1607.1908
 
 [node name="PathFollow2D15" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1548.9237, 365.5115)
-rotation = -1.9496964
-progress = 843.38226
+position = Vector2(947.99927, 851.1225)
+rotation = -2.9985435
+progress = 1721.9902
+
+[node name="PathFollow2D16" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(834.15356, 855.3144)
+rotation = 2.9416735
+progress = 1836.7896
 
 [node name="PathFollow2D17" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1472.1532, 286.99606)
-rotation = -2.6331618
-progress = 955.83325
+position = Vector2(721.83856, 879.13983)
+rotation = 2.9287252
+progress = 1951.5889
+
+[node name="PathFollow2D18" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(608.83905, 893.48346)
+rotation = -2.91376
+progress = 2066.3882
 
 [node name="PathFollow2D19" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1368.0046, 245.10558)
-rotation = -2.8716936
-progress = 1068.2842
+position = Vector2(546.66895, 810.8299)
+rotation = -1.4540781
+progress = 2181.1875
+
+[node name="PathFollow2D20" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(609.90106, 726.979)
+rotation = -0.10008601
+progress = 2295.987
 
 [node name="PathFollow2D21" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(1042.3352, 157.30194)
-rotation = -2.8792875
-progress = 1405.6371
+position = Vector2(724.58923, 729.8493)
+rotation = 0.03978
+progress = 2410.7861
 
 [node name="PathFollow2D22" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(770.67285, 84.96338)
-rotation = -2.8850594
-progress = 1686.7645
+position = Vector2(839.21704, 734.4116)
+rotation = 0.03978
+progress = 2525.5857
 
 [node name="PathFollow2D23" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(661.6772, 57.33218)
-rotation = -2.9391532
-progress = 1799.2155
+position = Vector2(951.5826, 719.37286)
+rotation = -0.4470738
+progress = 2640.385
 
 [node name="PathFollow2D24" parent="Curva" instance=ExtResource("3_f4sfo")]
-position = Vector2(586.0607, 102.435326)
-rotation = 1.8829273
-progress = 1899.0631
+position = Vector2(1048.2139, 657.5559)
+rotation = -0.5947592
+progress = 2755.1843
+
+[node name="PathFollow2D25" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1136.3462, 584.1217)
+rotation = -0.7591329
+progress = 2869.9836
+
+[node name="PathFollow2D26" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1194.3777, 489.0961)
+rotation = -1.4981858
+progress = 2984.783
+
+[node name="PathFollow2D27" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1190.7634, 374.4562)
+rotation = -1.6386322
+progress = 3099.5825
+
+[node name="PathFollow2D28" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1166.5972, 265.14102)
+rotation = -2.5046089
+progress = 3214.3816
+
+[node name="PathFollow2D29" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1053.7828, 263.0241)
+rotation = 3.065529
+progress = 3329.181
+
+[node name="PathFollow2D30" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(939.3678, 271.929)
+rotation = 3.0637248
+progress = 3443.9805
+
+[node name="PathFollow2D31" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(824.90967, 280.8611)
+rotation = 3.0636969
+progress = 3558.7798
+
+[node name="PathFollow2D32" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(710.4532, 289.79816)
+rotation = 3.0636215
+progress = 3673.579
+
+[node name="PathFollow2D33" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(619.3516, 332.2164)
+rotation = 1.6835647
+progress = 3788.3787
+
+[node name="PathFollow2D34" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(675.73035, 423.243)
+rotation = 0.467191
+progress = 3903.1777
+
+[node name="PathFollow2D35" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(780.5948, 470.06525)
+rotation = 0.374064
+progress = 4017.977
+
+[node name="PathFollow2D36" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(889.0988, 464.24347)
+rotation = -0.616268
+progress = 4132.7764
+
+[node name="PathFollow2D37" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(980.0252, 394.1603)
+rotation = -0.6624263
+progress = 4247.5757
+
+[node name="PathFollow2D38" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1080.4436, 349.34976)
+rotation = 0.23177716
+progress = 4362.375
+
+[node name="PathFollow2D39" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1120.8217, 436.07178)
+rotation = 2.1073005
+progress = 4477.1743
+
+[node name="PathFollow2D40" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(1038.8665, 515.5489)
+rotation = 2.4888842
+progress = 4591.974
+
+[node name="PathFollow2D41" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(948.0465, 585.76355)
+rotation = 2.4708333
+progress = 4706.773
+
+[node name="PathFollow2D42" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(850.5871, 645.1561)
+rotation = 2.8329835
+progress = 4821.5723
+
+[node name="PathFollow2D43" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(738.3711, 641.0983)
+rotation = -2.7591074
+progress = 4936.372
+
+[node name="PathFollow2D44" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(653.49286, 566.1264)
+rotation = -2.2374892
+progress = 5051.1714
+
+[node name="PathFollow2D45" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(582.4036, 475.78378)
+rotation = -2.2374892
+progress = 5165.97
+
+[node name="PathFollow2D46" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(517.6337, 381.5127)
+rotation = -1.8913846
+progress = 5280.77
+
+[node name="PathFollow2D47" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(550.9005, 277.6969)
+rotation = -0.67046225
+progress = 5395.5693
+
+[node name="PathFollow2D48" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(655.65955, 231.98068)
+rotation = -0.35600382
+progress = 5510.3687
+
+[node name="PathFollow2D49" parent="Curva" instance=ExtResource("3_f4sfo")]
+position = Vector2(763.38257, 192.15817)
+rotation = -0.3524576
+progress = 5625.168
 
 [node name="Area2D" type="Area2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 collision_layer = 2
 script = ExtResource("3_y0ffo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
-polygon = PackedVector2Array(1101, 813, 1517, 707, 1527, 695, 1467, 604, 1493, 522, 1518, 472, 1502, 379, 1461, 341, 1311, 283, 639, 101, 620, 166, 606, 237, 617, 275, 641, 307, 981, 557, 1050, 657, 1036, 772, 1009, 823, 952, 864, 851, 890, 744, 889, 692, 862, 673, 831, 671, 796, 718, 716, 715, 708, 708, 705, 680, 734, 633, 777, 573, 812, 505, 834, 469, 837, 414, 829, 394, 809, 372, 770, 372, 740, 402, 694, 505, 590, 513, 549, 494, 494, 308, 376, 294, 412, 266, 493, 267, 533, 292, 606, 325, 689, 348, 769, 359, 784, 380, 807, 411, 833, 468, 844, 499, 853, 742, 901, 852, 896, 953, 869)
+polygon = PackedVector2Array(500, 406, 554, 483, 663, 620, 693, 646, 724, 664, 772, 678, 806, 681, 845, 676, 878, 665, 912, 646, 1065, 528, 1123, 479, 1139, 459, 1150, 438, 1156, 418, 1158, 402, 1153, 382, 1147, 363, 1132, 343, 1119, 333, 1096, 325, 1081, 322, 1065, 320, 1033, 325, 1010, 337, 925, 403, 856, 453, 844, 455, 824, 455, 810, 452, 796, 448, 746, 426, 706, 408, 676, 392, 666, 385, 658, 378, 653, 371, 648, 355, 646, 338, 647, 330, 650, 324, 652, 321, 672, 320, 789, 310, 1129, 285, 1144, 284, 1150, 286, 1153, 291, 1156, 301, 1160, 326, 1163, 365, 1166, 415, 1166, 478, 1164, 504, 1162, 514, 1157, 524, 1144, 540, 1078, 600, 955, 688, 934, 697, 913, 704, 899, 708, 882, 709, 804, 706, 638, 700, 601, 701, 563, 716)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
-polygon = PackedVector2Array(0, 16, 20, 1042, 226, 1051, 302, 860, 233, 722, 194, 637, 171, 486, 180, 404, 239, 303, 293, 281, 289, 0)
+polygon = PackedVector2Array(888, 762, 867, 763, 826, 761, 721, 756, 614, 754, 605, 755, 595, 759, 587, 768, 581, 782, 574, 807, 573, 830, 576, 841, 585, 850, 603, 863, 610, 866, 618, 868, 650, 868, 755, 845, 858, 823, 872, 821, 887, 821, 945, 823, 967, 828, 985, 834, 999, 839, 1025, 851, 1056, 867, 1129, 909, 1197, 947, 1244, 972, 1253, 973, 1264, 973, 1273, 971, 1283, 964, 1292, 952, 1297, 940, 1300, 930, 1295, 839, 1277, 607, 1248, 199, 1239, 126, 1227, 100, 1209, 82, 1199, 73, 1185, 72, 1167, 76, 1145, 82, 1067, 111, 858, 186, 616, 275, 576, 292, 561, 305, 553, 314, 548, 325, 545, 334, 543, 351, 543, 371, 548, 383, 567, 412, 611, 469, 697, 576, 718, 598, 735, 609, 751, 616, 770, 622, 787, 625, 803, 626, 819, 625, 839, 622, 861, 612, 881, 601, 959, 545, 1074, 451, 1092, 433, 1100, 420, 1104, 407, 1102, 396, 1097, 383, 1088, 378, 1075, 375, 1061, 374, 1049, 376, 1028, 390, 888, 497, 873, 505, 860, 507, 841, 509, 825, 509, 811, 507, 794, 503, 778, 498, 716, 472, 672, 451, 645, 435, 623, 419, 611, 404, 603, 389, 597, 372, 594, 355, 592, 337, 594, 320, 603, 298, 615, 283, 628, 274, 638, 269, 662, 267, 703, 263, 1112, 232, 1146, 230, 1162, 234, 1176, 240, 1188, 248, 1197, 260, 1204, 272, 1208, 287, 1212, 311, 1218, 361, 1220, 415, 1220, 488, 1217, 510, 1215, 525, 1211, 538, 1206, 547, 1192, 566, 1165, 595, 1140, 618, 1125, 631, 1088, 662, 1047, 692, 997, 725, 956, 747, 935, 754, 909, 760)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
-polygon = PackedVector2Array(303, 281, 422, 338, 589, 467, 612, 530, 605, 619, 560, 685, 535, 702, 456, 742, 484, 739, 511, 731, 576, 699, 616, 664, 679, 612, 765, 619, 810, 677, 815, 741, 789, 782, 772, 793, 776, 799, 838, 794, 912, 775, 943, 737, 951, 673, 925, 637, 575, 380, 510, 247, 520, 147, 529, 95, 584, 22, 294, -2)
+polygon = PackedVector2Array(811, 145, 920, 107, 1026, 70, 1105, 39, 1135, 29, 1158, 23, 1176, 20, 1192, 19, 1206, 20, 1216, 23, 1226, 28, 1241, 39, 1257, 53, 1267, 65, 1277, 77, 1284, 91, 1289, 105, 1293, 119, 1295, 132, 1297, 149, 1298, 161, 1302, 199, 1306, 246, 1307, 273, 1310, 312, 1316, 408, 1347, 814, 1353, 896, 1354, 922, 1353, 939, 1349, 955, 1340, 974, 1331, 989, 1315, 1007, 1301, 1016, 1285, 1022, 1268, 1026, 1251, 1026, 1231, 1024, 1219, 1020, 1203, 1012, 1142, 978, 1041, 921, 1004, 899, 979, 888, 953, 880, 939, 877, 913, 875, 903, 1160, 1452, 1155, 1455, -34, 772, -47)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
-polygon = PackedVector2Array(305, 862, 362, 915, 457, 947, 610, 977, 769, 991, 843, 979, 1003, 956, 1547, 801, 1639, 731, 1629, 644, 1577, 607, 1609, 514, 1611, 437, 1597, 351, 1517, 258, 1405, 201, 804, 43, 695, 15, 617, 10, 585, 22, 583, 4, 1889, 18, 1899, 1070, 850, 1035, 635, 1026, 307, 960)
+polygon = PackedVector2Array(810, 145, 622, 215, 586, 228, 563, 239, 549, 247, 532, 259, 516, 274, 507, 285, 501, 298, 496, 312, 492, 326, 490, 346, 489, 368, 491, 384, 495, 395, 500, 406, 562, 718, 553, 726, 544, 737, 536, 751, 529, 767, 523, 787, 520, 806, 520, 831, 521, 846, 525, 858, 531, 869, 539, 880, 549, 890, 558, 897, 568, 904, 578, 911, 589, 916, 598, 918, 607, 920, 617, 921, 630, 922, 649, 922, 662, 920, 679, 916, 696, 913, 716, 908, 744, 902, 788, 893, 862, 877, 877, 874, 892, 874, 912, 875, 898, 1162, 466, 1161, 428, 135, 800, 120)
 
 [node name="You Lost Text" type="Label" parent="."]
 visible = false
@@ -174,8 +360,8 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(960, 500)
-zoom = Vector2(1.1, 1.1)
+offset = Vector2(960, 520)
+zoom = Vector2(1.045, 1.045)
 
 [connection signal="body_entered" from="Curva/Apressador Path Follower/Area2D" to="Curva/Apressador Path Follower/Area2D" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
