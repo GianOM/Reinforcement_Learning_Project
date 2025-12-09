@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4wttcr2gdd5m"]
+[gd_scene load_steps=11 format=3 uid="uid://4wttcr2gdd5m"]
 
 [ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
 [ext_resource type="Texture2D" uid="uid://ccdd2qrqqrkyg" path="res://Pista Nelson Piquet.png" id="2_pxuqu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Curve2D" uid="uid://wl2j5isrpgtj" path="res://Curva Nelson Piquet.tres" id="3_pxuqu"]
 [ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
 [ext_resource type="Script" uid="uid://c3d3wtj0ep5jt" path="res://kill.gd" id="5_pxuqu"]
+[ext_resource type="Script" uid="uid://c2l8613he2h2l" path="res://Recompensas_Manager.gd" id="8_46m4f"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_pxuqu"]
 
@@ -20,7 +21,6 @@ process_mode = 3
 z_index = 8
 position = Vector2(828, 169)
 rotation = 1.2217305
-My_Car_Mode = 1
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(896, 514)
@@ -311,7 +311,7 @@ script = ExtResource("3_y0ffo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
-polygon = PackedVector2Array(500, 406, 554, 483, 663, 620, 693, 646, 724, 664, 772, 678, 806, 681, 845, 676, 878, 665, 912, 646, 1065, 528, 1123, 479, 1139, 459, 1150, 438, 1156, 418, 1158, 402, 1153, 382, 1147, 363, 1132, 343, 1119, 333, 1096, 325, 1081, 322, 1065, 320, 1033, 325, 1010, 337, 925, 403, 856, 453, 844, 455, 824, 455, 810, 452, 796, 448, 746, 426, 706, 408, 676, 392, 666, 385, 658, 378, 653, 371, 648, 355, 646, 338, 647, 330, 650, 324, 652, 321, 672, 320, 789, 310, 1129, 285, 1144, 284, 1150, 286, 1153, 291, 1156, 301, 1160, 326, 1163, 365, 1166, 415, 1166, 478, 1164, 504, 1162, 514, 1157, 524, 1144, 540, 1078, 600, 955, 688, 934, 697, 913, 704, 899, 708, 882, 709, 804, 706, 638, 700, 601, 701, 563, 716)
+polygon = PackedVector2Array(500, 406, 554, 483, 663, 620, 693, 646, 724, 664, 772, 678, 806, 681, 845, 676, 878, 665, 912, 646, 1065, 528, 1123, 479, 1139, 459, 1150, 438, 1156, 418, 1158, 402, 1153, 382, 1147, 363, 1132, 343, 1119, 333, 1096, 325, 1081, 322, 1065, 320, 1033, 325, 1010, 337, 925, 403, 856, 453, 844, 455, 824, 455, 810, 452, 796, 448, 746, 426, 706, 408, 676, 392, 666, 385, 658, 378, 653, 371, 648, 355, 646, 338, 647, 330, 650, 324, 652, 321, 672, 320, 789, 310, 1129, 285, 1144, 284, 1150, 286, 1153, 291, 1156, 301, 1160, 326, 1163, 365, 1166, 415, 1166, 478, 1164, 504, 1162, 514, 1157, 524, 1144, 540, 1078, 600, 955, 688, 934, 697, 913, 704, 899, 708, 882, 709, 804, 706, 638, 700, 601, 701, 560, 719)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
@@ -323,41 +323,55 @@ polygon = PackedVector2Array(811, 145, 920, 107, 1026, 70, 1105, 39, 1135, 29, 1
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
-polygon = PackedVector2Array(810, 145, 622, 215, 586, 228, 563, 239, 549, 247, 532, 259, 516, 274, 507, 285, 501, 298, 496, 312, 492, 326, 490, 346, 489, 368, 491, 384, 495, 395, 500, 406, 562, 718, 553, 726, 544, 737, 536, 751, 529, 767, 523, 787, 520, 806, 520, 831, 521, 846, 525, 858, 531, 869, 539, 880, 549, 890, 558, 897, 568, 904, 578, 911, 589, 916, 598, 918, 607, 920, 617, 921, 630, 922, 649, 922, 662, 920, 679, 916, 696, 913, 716, 908, 744, 902, 788, 893, 862, 877, 877, 874, 892, 874, 912, 875, 898, 1162, 466, 1161, 428, 135, 800, 120)
+polygon = PackedVector2Array(811, 145, 622, 215, 586, 228, 563, 239, 549, 247, 532, 259, 516, 274, 507, 285, 501, 298, 496, 312, 492, 326, 490, 346, 489, 368, 491, 384, 495, 395, 500, 406, 562, 718, 553, 726, 544, 737, 536, 751, 529, 767, 523, 787, 520, 806, 520, 831, 521, 846, 525, 858, 531, 869, 539, 880, 549, 890, 558, 897, 568, 904, 578, 911, 589, 916, 598, 918, 607, 920, 617, 921, 630, 922, 649, 922, 662, 920, 679, 916, 696, 913, 716, 908, 744, 902, 788, 893, 862, 877, 877, 874, 892, 874, 914, 875, 898, 1162, 466, 1161, 428, 135, 800, 120)
 
-[node name="You Lost Text" type="Label" parent="."]
-visible = false
-anchors_preset = 15
+[node name="Recompensas Text" type="Label" parent="." node_paths=PackedStringArray("Car_Ref")]
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -160.5
-offset_right = 1920.0
-offset_bottom = 932.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 200
-text = "You lost"
+offset_left = 1417.0
+offset_top = 20.0
+offset_right = 1817.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 60
+text = "Recompensas:"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("8_46m4f")
+Car_Ref = NodePath("../Player_Character_Car")
 
-[node name="Score Text" type="Label" parent="You Lost Text"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3862122
-anchor_top = 0.5813799
-anchor_right = 0.6085618
-anchor_bottom = 0.8053204
-offset_top = 0.34246826
-offset_right = 0.19592285
-offset_bottom = -0.3125
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Score: 15"
+[node name="ScrollContainer" type="ScrollContainer" parent="Recompensas Text"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 96.0
+offset_right = 417.0
+offset_bottom = 880.0
+follow_focus = true
+scroll_vertical_custom_step = 4096.0
+vertical_scroll_mode = 3
+
+[node name="Box_Container_List" type="VBoxContainer" parent="Recompensas Text/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Recompensas Text/ScrollContainer/Box_Container_List"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 27
+text = "Carro #5   -   0.72365"
+horizontal_alignment = 1
+
+[node name="Media" type="Label" parent="Recompensas Text"]
+layout_mode = 0
+offset_top = 888.0
+offset_right = 417.0
+offset_bottom = 951.0
+theme_override_font_sizes/font_size = 45
+text = "Média (20 carros) : 0.000"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+autowrap_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(960, 520)

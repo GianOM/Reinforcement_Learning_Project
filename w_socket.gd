@@ -34,7 +34,7 @@ func _ready():
 		set_process(false)
 
 
-func _process(_delta):
+func _physics_process(_delta: float) -> void:
 	# Call this in `_process()` or `_physics_process()`.
 	# Data transfer and state updates will only happen when calling this function.
 	socket.poll()
@@ -49,13 +49,16 @@ func _process(_delta):
 			var packet = socket.get_packet()
 			if socket.was_string_packet():
 				var packet_text: String = packet.get_string_from_utf8()
+				var Input_Vector:PackedStringArray = parse_floats(packet_text)
 				
-				if packet_text == "RESET":
-					Game_Manager.RESET_CAR.emit()
+				if Input_Vector[0] == "RESET":
+					
+					Game_Manager.Send_Rewards_Stats.emit(Input_Vector[1].to_float())
+					#Game_Manager.RESET_CAR.emit()
 				
 				else:
-					var Input_Vector = parse_floats(packet_text)
-					Game_Manager.Send_Inputs_to_Car.emit(Input_Vector.x,Input_Vector.y)
+					
+					Game_Manager.Send_Inputs_to_Car.emit(Input_Vector[0].to_float(),Input_Vector[1].to_float())
 				
 				#print("< Got text data from server: %s" % packet_text)
 				
@@ -123,12 +126,15 @@ func Send_Message(Message_to_Send: String):
 	pass
 	
 	
-func parse_floats(input_string: String) -> Vector2:
-	var parts = input_string.split(",")
+	
+func parse_floats(input_string: String) -> PackedStringArray:
+	
+	var parts: PackedStringArray = input_string.split(",")
+	
 	if parts.size() != 2:
 		push_error("Invalid float pair: %s" % input_string)
-		return Vector2.ZERO
+		#return null
 		
-	var x = parts[0].to_float()
-	var y = parts[1].to_float()
-	return Vector2(x, y)
+	#var x = parts[0].to_float()
+	#var y = parts[1].to_float()
+	return parts

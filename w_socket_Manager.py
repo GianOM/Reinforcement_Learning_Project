@@ -109,7 +109,7 @@ async def handler(websocket):
                     last_action = None
                     last_distance = None
                     print(f"Episode ended. Reward: {reward:.2f}")
-                    await send_message("RESET")
+                    await send_message(f"RESET,{reward:.3f}")
                 else:
                     last_distance = current_distance
             
@@ -255,8 +255,8 @@ async def send_message(message: str):
 
 async def start_server(host="0.0.0.0", port=8080):
     """Starts the WebSocket server and keeps it running."""
-    #initialize_agent()
-    load_agent_model("final_model.pth")
+    initialize_agent()
+    #load_agent_model("final_model.pth")
     async with websockets.serve(handler, host, port):
         print(f"Python WebSocket server running on {host}:{port}")
         print(f"Training mode: {'ENABLED' if TRAIN_AGENT else 'DISABLED'}")

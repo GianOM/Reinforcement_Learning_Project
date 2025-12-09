@@ -16,8 +16,6 @@ var RNG: RandomNumberGenerator = RandomNumberGenerator.new()
 @onready var curva: Path2D = $"../Curva"
 
 @export var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
-#var My_Car_Mode: Car_Mode = Car_Mode.PLAYER_CONTROLLED
-#var My_Car_Mode: Car_Mode = Car_Mode.AI_CONTROLLED
 
 @onready var lidar_manager: Node2D = $Lidar_Manager
 
@@ -27,6 +25,8 @@ var turn_speed :float = 40.0            # How fast the car rotates
 var friction :float = 0.99           # Resistance when no input
 
 var Car_Checkpoints_Collected: float = 0.0
+
+var Car_Number: int = 0
 
 # As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
 var Distance_Traveled: float = 0
@@ -182,22 +182,25 @@ func Kill_Car():
 	global_position = Next_Baked_Point + (transform.x * RNG.randf_range(-0.05,0.05))
 	
 	#Incluimos uma rotacao aleatoria de +-45º para uma melhor generalizacao
-	rotation = (curva.get_child(1).rotation + PI/2) + RNG.randf_range(-PI/4,PI/4)
+	rotation = (curva.get_child(1).rotation + PI/2) + RNG.randf_range(-PI/8,PI/8)
 	
 	
 	Front_Vector = transform.y
-	Front_Aceleration = RNG.randf_range(0.0,0.03)
+	Front_Aceleration = RNG.randf_range(-0.01,0.035)
 	
 	is_Car_Crashed = false
 		
 	Car_Checkpoints_Collected = 0.0
 	# As duas variaveis abaixo sao escritas pelo "Script_Cuve_Manager"
+	#print(Distance_Traveled)
 	Distance_Traveled = 0.0
 	Car_Direction_to_Next_Checkpoing = 0.0
 		
 		
 	##Usado para penalizar o carro ficar parado
 	Tick_Penality = 0.0
+	
+	Car_Number += 1
 	
 	lidar_manager.has_AI_Car_Crashed = false
 	

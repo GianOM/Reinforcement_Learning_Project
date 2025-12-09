@@ -42,7 +42,7 @@ script = ExtResource("2_k0140")
 
 [node name="Front_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
 scale = Vector2(0.025, 0.15000014)
-target_position = Vector2(0, -100)
+target_position = Vector2(0, -50)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -51,7 +51,7 @@ collide_with_bodies = false
 position = Vector2(0, -0.22222207)
 rotation = -0.6981317
 scale = Vector2(0.02500002, 0.14999998)
-target_position = Vector2(0, -100)
+target_position = Vector2(0, -25)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -59,7 +59,7 @@ collide_with_bodies = false
 [node name="Back_Ray_Cast" type="RayCast2D" parent="Lidar_Manager"]
 rotation = 3.1415927
 scale = Vector2(0.025, 0.15000013)
-target_position = Vector2(0, -100)
+target_position = Vector2(0, -50)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
@@ -68,7 +68,7 @@ collide_with_bodies = false
 position = Vector2(0, -0.22222212)
 rotation = 0.6981317
 scale = Vector2(0.025000019, 0.14999999)
-target_position = Vector2(0, -100)
+target_position = Vector2(0, -25)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false

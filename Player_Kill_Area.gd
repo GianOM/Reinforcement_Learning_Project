@@ -10,4 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 			
 			body.is_Car_Crashed = true
 			
-			Game_Manager.RESET_CAR.emit()
+			
+			if body.My_Car_Mode == Car.Car_Mode.PLAYER_CONTROLLED:
+				Game_Manager.Send_Rewards_Stats.emit(body.Distance_Traveled)
+				print("Teste")
