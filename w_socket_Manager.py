@@ -18,7 +18,7 @@ last_distance = None
 # Reward configuration
 REWARD_DISTANCE_SCALE = 0.02
 REWARD_SPEED_SCALE = 0.001
-REWARD_CRASH = 5.0
+REWARD_CRASH = 2.5
 REWARD_FINISH = 10.0
 CHECKPOINT_REWARD = 48
 
@@ -84,10 +84,6 @@ async def handler(websocket):
                     checkpoint_bonus=car_data.get("checkpoint_bonus", 0.0),
 
                     crashed=car_data.get("crashed", False),
-
-                    car_speed=car_data.get("car_speed", False),
-
-                    tick_Penalty=car_data.get("ticks", 0.0),
 
                     distance_traveled=car_data.get("distance_traveled", 0.0)
 
@@ -163,11 +159,10 @@ def action_to_godot_control(action_index: int) -> tuple[float, float]:
 def compute_reward(
     checkpoint_bonus: int,
     crashed: bool,
-    car_speed:float,
-    tick_Penalty: float,
     distance_traveled: float
 ) -> float:
     """Compute reward for the current state transition."""
+    
     reward = 0.0
 
     # Numero de Checkpoints coletados
@@ -176,9 +171,9 @@ def compute_reward(
     # Large negative reward for crashing
     if crashed:
 
-        # Batidas em baixa velocidade sao MAIS penalizadas
-        #reward += REWARD_CRASH * (1.0 + car_speed)
-        reward = (reward / REWARD_CRASH) * car_speed
+        # Batidas em alta velocidade sao MAIS penalizadas
+        #reward += REWARD_CRASH / (1.0 + car_speed)
+        reward = (reward / REWARD_CRASH)
     
     return reward
 

@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 @warning_ignore("unused_signal")
-signal Checkpoint_Collected()# Acessado pela Checkpoint Stuff
+signal Checkpoint_Collected() # Acessado pela Checkpoint Stuff
 
 
 enum Car_Mode{
@@ -38,17 +38,20 @@ var is_Car_Crashed: bool = false
 ##Usado para penalizar o carro ficar parado
 var Tick_Penality: float = 0.0
 
-#TODO:
+
 # Posicao dele no Espaco
 var Front_Vector : Vector2 = Vector2.ZERO
 var Front_Aceleration: float = 0.0
 
-var Replay_Buffer: Array[Vector3]
+
+var Replay_Buffer: PackedVector2Array
 
 var input_forward : float
 var input_turn :float
 
 var Curve_Points: PackedVector2Array
+
+
 
 func _ready() -> void:
 	
@@ -61,8 +64,6 @@ func Receive_AI_Inputs(Forward: float, Turn: float):
 	
 	input_forward = Forward
 	input_turn = Turn
-	
-	#print("Input Changed")
 	
 	
 func _physics_process(delta: float) -> void:
@@ -110,6 +111,8 @@ func _physics_process(delta: float) -> void:
 				#position -= Front_Vector * Front_Aceleration
 				#
 				#Input_Replay_Iterator += 1
+				
+	Replay_Buffer.append(global_position)
 		
 func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 	
@@ -156,8 +159,6 @@ func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 			
 			
 		
-	#print(Front_Aceleration)
-		
 func handle_steering(Steering_Input_Amount: float ,delta_Time: float) -> void:
 	
 	
@@ -174,14 +175,14 @@ func Kill_Car():
 	curva.Update_Goals(Next_Baked_Point)
 	
 	# Adiciona um offset lateral para impedir que o carro sempre renasça no centro da pista
-	global_position = Next_Baked_Point + (transform.x * RNG.randf_range(-0.05,0.05))
+	global_position = Next_Baked_Point + (transform.x * RNG.randf_range(-0.1,0.1))
 	
 	#Incluimos uma rotacao aleatoria de +-45º para uma melhor generalizacao
-	rotation = (curva.get_child(1).rotation + PI/2) + RNG.randf_range(-PI/8,PI/8)
-	
+	#rotation = (curva.get_child(1).rotation + PI/2) + RNG.randf_range(-PI/4,PI/4)
+	rotation = (curva.get_child(1).rotation + PI/2) + RNG.randf_range(-PI/10,PI/10)
 	
 	Front_Vector = transform.y
-	Front_Aceleration = RNG.randf_range(-0.01,0.035)
+	Front_Aceleration = RNG.randf_range(-0.01,0.01)
 	
 	is_Car_Crashed = false
 		
@@ -198,4 +199,6 @@ func Kill_Car():
 	Car_Number += 1
 	
 	lidar_manager.has_AI_Car_Crashed = false
+	
+	Replay_Buffer = []
 	

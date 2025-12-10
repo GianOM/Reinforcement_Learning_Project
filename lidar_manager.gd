@@ -22,8 +22,6 @@ class Car_Agent_State:
 	#Numero de Checkpoints dividido pelo maximo de checkpoints
 	var Normalized_Checkpoints: float = 0.0
 	
-	var Penalidade_Ticks: float = 0
-	
 	func _to_string() -> String:
 		
 		var Temp_Text: String = ""
@@ -51,8 +49,6 @@ class Car_Agent_State:
 		Temp_Text += str(Crashed) + ","
 		
 		Temp_Text += str(Normalized_Checkpoints) + ","
-		
-		Temp_Text += str(Penalidade_Ticks)
 		
 		return Temp_Text
 	
@@ -86,30 +82,19 @@ func _physics_process(delta: float) -> void:
 		
 		Car_Frame_State.Car_Speed = (player_character_car.Front_Aceleration / 0.05)
 		Car_Frame_State.Car_rotation = sin(player_character_car.rotation)
-		
-		
 		Car_Frame_State.Distance_Traveled = player_character_car.Distance_Traveled 
-		
+		Car_Frame_State.Normalized_Checkpoints = player_character_car.Car_Checkpoints_Collected / 15
 		Car_Frame_State.Chepoint_Angle = player_character_car.Car_Direction_to_Next_Checkpoing
 		
 		if player_character_car.is_Car_Crashed:
-			
 			Car_Frame_State.Crashed = 1
 			has_AI_Car_Crashed = true
-			
 		else:
-			
 			Car_Frame_State.Crashed = 0
-			
-			
-			
-		Car_Frame_State.Normalized_Checkpoints = player_character_car.Car_Checkpoints_Collected / 25
-		Car_Frame_State.Penalidade_Ticks = player_character_car.Tick_Penality
-		
 		
 			
 		if left_side_ray_cast.is_colliding():
-			Car_Frame_State.Left_Side_Collision_Ray_Distance = left_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 25.0
+			Car_Frame_State.Left_Side_Collision_Ray_Distance = left_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 50.0
 			left_ball.global_position = left_side_ray_cast.get_collision_point()
 			left_ball.show()
 		else:
@@ -117,7 +102,7 @@ func _physics_process(delta: float) -> void:
 			left_ball.hide()
 			
 		if right_side_ray_cast.is_colliding():
-			Car_Frame_State.Right_Side_Collision_Ray_Distance = right_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position)/25.0
+			Car_Frame_State.Right_Side_Collision_Ray_Distance = right_side_ray_cast.get_collision_point().distance_to(player_character_car.global_position)/50.0
 			right_ball.global_position = right_side_ray_cast.get_collision_point()
 			right_ball.show()
 		else:
@@ -133,10 +118,10 @@ func _physics_process(delta: float) -> void:
 			Car_Frame_State.Front_Collision_Ray_Distance = front_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 50.0
 			front_ball.global_position = front_ray_cast.get_collision_point()
 			front_ball.show()
-			
 		else:
 			Car_Frame_State.Front_Collision_Ray_Distance = 1.0
 			front_ball.hide()
+			
 			
 		if back_ray_cast.is_colliding():
 			Car_Frame_State.Back_Collision_Ray_Distance = back_ray_cast.get_collision_point().distance_to(player_character_car.global_position) / 50.0

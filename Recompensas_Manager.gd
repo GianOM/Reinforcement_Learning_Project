@@ -1,6 +1,6 @@
 extends Label
 
-@onready var top_3: Podium = $"../Top 3"
+@onready var top_3: Podium = $"../Podium_Manager"
 
 @export var Car_Ref: Car
 @onready var Rewards_Container: VBoxContainer = $ScrollContainer/Box_Container_List
@@ -18,9 +18,8 @@ func _ready() -> void:
 	
 func _on_Car_Reward_Recieved(Car_Reward: float):
 	
-	#@warning_ignore("narrowing_conversion")
-	#scroll_container.ensure_control_visible(Rewards_Container.get_child(0))
-	#Total_of_Cars += 1
+	top_3.Dado_Recebido(Car_Ref, Car_Reward)
+	
 	Ultimas_Recompensas.append(Car_Reward)
 	
 	if Ultimas_Recompensas.size() > 20:
@@ -28,12 +27,12 @@ func _on_Car_Reward_Recieved(Car_Reward: float):
 	
 	
 	var Temp_Label: Label = Label.new()
-	Temp_Label.text = "Carro #" + str(Car_Ref.Car_Number) + "  ->  " + str(Car_Reward)
+	Temp_Label.text = "Carro #" + str(Car_Ref.Car_Number) + ":  " + str(Car_Reward)
 	Temp_Label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	Temp_Label.add_theme_font_size_override("font_size", 27)
 	Rewards_Container.add_child(Temp_Label)
 	
-	top_3.Dado_Recebido(Car_Ref, Car_Reward)
+	
 	
 	while Temp_Label.get_parent() == null:
 		await get_tree().process_frame
