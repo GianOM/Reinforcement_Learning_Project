@@ -176,9 +176,9 @@ def compute_reward(
     # Large negative reward for crashing
     if crashed:
 
-        # Batidas em alta velocidade sao MENOS penalizadas
+        # Batidas em baixa velocidade sao MAIS penalizadas
         #reward += REWARD_CRASH * (1.0 + car_speed)
-        reward = reward / REWARD_CRASH
+        reward = (reward / REWARD_CRASH) * car_speed
     
     return reward
 

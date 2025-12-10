@@ -111,11 +111,6 @@ func _physics_process(delta: float) -> void:
 				#
 				#Input_Replay_Iterator += 1
 		
-		
-	#green_arrow.look_at(position + velocity)
-	#green_arrow.global_position = global_position + velocity
-	#green_arrow.rotation_degrees += 90
-		
 func handle_acceleration(Forward_Input_Amount: float,delta_Time: float) -> void:
 	
 	

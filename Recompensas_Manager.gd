@@ -1,5 +1,6 @@
 extends Label
 
+@onready var top_3: Podium = $"../Top 3"
 
 @export var Car_Ref: Car
 @onready var Rewards_Container: VBoxContainer = $ScrollContainer/Box_Container_List
@@ -31,6 +32,8 @@ func _on_Car_Reward_Recieved(Car_Reward: float):
 	Temp_Label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	Temp_Label.add_theme_font_size_override("font_size", 27)
 	Rewards_Container.add_child(Temp_Label)
+	
+	top_3.Dado_Recebido(Car_Ref, Car_Reward)
 	
 	while Temp_Label.get_parent() == null:
 		await get_tree().process_frame

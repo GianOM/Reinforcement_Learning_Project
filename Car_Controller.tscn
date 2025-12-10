@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4wttcr2gdd5m"]
+[gd_scene load_steps=12 format=3 uid="uid://4wttcr2gdd5m"]
 
 [ext_resource type="PackedScene" uid="uid://dh4sfdkxxj6k2" path="res://Car_Scene.tscn" id="1_y0ffo"]
 [ext_resource type="Texture2D" uid="uid://ccdd2qrqqrkyg" path="res://Pista Nelson Piquet.png" id="2_pxuqu"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://gccyh4fui3kq" path="res://Player_Kill_Area.gd" id="3_y0ffo"]
 [ext_resource type="Script" uid="uid://c3d3wtj0ep5jt" path="res://kill.gd" id="5_pxuqu"]
 [ext_resource type="Script" uid="uid://c2l8613he2h2l" path="res://Recompensas_Manager.gd" id="8_46m4f"]
+[ext_resource type="Script" uid="uid://c707wuwl6n2c5" path="res://SCRIPT-Podium.gd" id="8_h8ppl"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_pxuqu"]
 
@@ -21,6 +22,7 @@ process_mode = 3
 z_index = 8
 position = Vector2(828, 169)
 rotation = 1.2217305
+My_Car_Mode = 1
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(896, 514)
@@ -324,6 +326,57 @@ polygon = PackedVector2Array(811, 145, 920, 107, 1026, 70, 1105, 39, 1135, 29, 1
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2D"]
 build_mode = 1
 polygon = PackedVector2Array(811, 145, 622, 215, 586, 228, 563, 239, 549, 247, 532, 259, 516, 274, 507, 285, 501, 298, 496, 312, 492, 326, 490, 346, 489, 368, 491, 384, 495, 395, 500, 406, 562, 718, 553, 726, 544, 737, 536, 751, 529, 767, 523, 787, 520, 806, 520, 831, 521, 846, 525, 858, 531, 869, 539, 880, 549, 890, 558, 897, 568, 904, 578, 911, 589, 916, 598, 918, 607, 920, 617, 921, 630, 922, 649, 922, 662, 920, 679, 916, 696, 913, 716, 908, 744, 902, 788, 893, 862, 877, 877, 874, 892, 874, 914, 875, 898, 1162, 466, 1161, 428, 135, 800, 120)
+
+[node name="Top 3" type="Label" parent="."]
+offset_left = 39.0
+offset_top = 47.0
+offset_right = 432.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 40
+text = "Top 3 Recompensas:"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_h8ppl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Top 3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.5
+offset_top = 56.0
+offset_right = 187.5
+offset_bottom = 209.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Top_1" type="Label" parent="Top 3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "----"
+horizontal_alignment = 1
+
+[node name="Top_2" type="Label" parent="Top 3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "----"
+horizontal_alignment = 1
+
+[node name="Top_3" type="Label" parent="Top 3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "----"
+horizontal_alignment = 1
+
+[node name="Media" type="Label" parent="Top 3"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 209.0
+offset_right = 384.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 38
+text = "Média : ----"
+horizontal_alignment = 1
 
 [node name="Recompensas Text" type="Label" parent="." node_paths=PackedStringArray("Car_Ref")]
 anchors_preset = 1
