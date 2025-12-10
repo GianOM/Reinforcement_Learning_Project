@@ -156,19 +156,14 @@ def action_to_godot_control(action_index: int) -> tuple[float, float]:
     return action_map.get(action_index, (0.0, 0.0))
 
 
-def compute_reward(
-    checkpoint_bonus: int,
-    crashed: bool,
-    distance_traveled: float
-) -> float:
-    """Compute reward for the current state transition."""
-    
+def compute_reward(checkpoint_bonus: int, crashed: bool, distance_traveled: float) -> float:
+    """FUNÇÃO DE RECOMPENSA."""
+
     reward = 0.0
 
-    # Numero de Checkpoints coletados
+    # Numero de Checkpoints coletados normalizado
     reward += distance_traveled * ((1 + checkpoint_bonus))
     
-    # Large negative reward for crashing
     if crashed:
 
         # Batidas em alta velocidade sao MAIS penalizadas
@@ -210,9 +205,6 @@ def parse_car_agent_state(state_string: str) -> dict:
 
         # Quantidade de Check Points que a IA Coletou Normalizada
         data["checkpoint_bonus"] = float(values[9]) 
-
-    if len(values) > 10:
-       data["ticks"] = float(values[10])
     
     return data
 
